@@ -21,18 +21,28 @@ class HomeScreen extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("I am " + homeData['name'],
-                  style: TextStyle(fontSize: 50,fontWeight: FontWeight.bold),
-                  ),
-                  Text(homeData['title'],
-                  style: TextStyle(fontSize: 35,color: Colors.black54),
-                  ),
-                ],
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Align(
+                    //   alignment: Alignment.bottomLeft,
+                    //   child: 
+                    // ),
+                    Text(homeData['greeting'].padRight(homeData['name'].length *5," "),
+                      style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.black45,),
+                      softWrap: false,
+                      ),
+                        Text(homeData['name'],
+                    style: TextStyle(fontSize: 50,fontWeight: FontWeight.bold),
+                    ),
+                    Text(homeData['title'],
+                    style: TextStyle(fontSize: 35,color: Colors.black54),
+                    ),
+                  ],
             ),
+              ),
           ),
         ],),
       ),
