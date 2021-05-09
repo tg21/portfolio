@@ -28,11 +28,15 @@ class StackedListView extends StatefulWidget {
   /// 0.0 ~ 1.0
   final double widthFactor;
 
+  // final double scrollPosition;
+
   /// After deleted item will trigger it
   final void Function(int index)? onRemove;
 
   /// Before delete item and return true will delete item
   final Future<bool> Function(int index)? beforeRemove;
+
+  final void Function(ScrollPosition position)? onScroll;
 
   const StackedListView({
     Key? key,
@@ -49,6 +53,7 @@ class StackedListView extends StatefulWidget {
     this.widthFactor = 1,
     this.onRemove,
     this.beforeRemove,
+    this.onScroll,
     this.animateDuration = kThemeAnimationDuration,
   })  : assert(fadeOutFrom >= 0 && fadeOutFrom <= 1,
             'The range of "fadeOutFrom" must be 0.0 ~ 1.0'),
@@ -82,6 +87,7 @@ class StackedListViewState extends State<StackedListView> {
   }
 
   void _update() {
+    widget.onScroll?.call(controller.position);
     setState(() {});
   }
 
