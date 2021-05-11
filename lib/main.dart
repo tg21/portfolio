@@ -1,5 +1,6 @@
-import 'dart:html';
+// /import 'dart:html';
 import 'package:flutter/material.dart';
+import 'package:portfolio/components/floating_action_bar.dart';
 import 'components/stacked_list_view.dart';
 import 'data/primary.dart';
 import 'screens/home.dart';
@@ -50,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   double getYAlignmentBasedOnScroll() {
     if (!actionBarController.hasClients) {
-      return 1;
+      return -1.025;
     }
     setState(() {
       maxScroll = actionBarController.position.maxScrollExtent + 0;
@@ -69,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       yOffset = 1.04 - scrollPosition / halfMaxScroll;
     }
     if (!yOffset.isFinite) {
-      yOffset = 1;
+      yOffset = -1.025;
     }
     //print('$maxScroll : $scrollPosition : $halfMaxScroll ---> $yOffset');
     return yOffset;
@@ -89,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     //print('$actionBarItemsCount : $index ---> $offset');
     actionBarController.animateTo(offset,
-        duration: Duration(milliseconds: 1000), curve: Curves.bounceOut);
+        duration: Duration(milliseconds: 1000), curve: Curves.ease);
   }
 
   int roundedCurrentScreenIndex = 0;
@@ -113,153 +114,71 @@ class _MyHomePageState extends State<MyHomePage> {
     //print("$index.  :: ${index.round()}");
   }
 
-  Color getActionBarIconColorOnHover(index) {
-    bool isHovered = hoveredIndex == index;
-    if (((preciseCurrentScreenIndex + 0.3) >= index &&
-        preciseCurrentScreenIndex <= index + 0.3)) {
-      return isHovered ? Colors.black : Colors.white;
-    } else {
-      return isHovered ? screensData[index]['primaryColor'] : Colors.black;
-    }
-  }
-
-  int hoveredIndex = -1;
-  void actionBarItemHovered(bool hovered, int index) {
-    if (!hovered) {
-      setState(() {
-        hoveredIndex = -1 + 0;
-      });
-    } else {
-      setState(() {
-        hoveredIndex = index + 0;
-      });
-    }
-    //print("hovered $hovered $hoveredIndex $index");
-  }
-
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     //final double itemHeight = size.height; // 400;
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        // body: OpacityStackedList(size: size, controller: controller, itemsData: itemsData),
-        body: Stack(children: [
-          StackedListView(
-            //padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-            itemCount: data.length,
-            itemExtent: size.height,
-            heightFactor: 1.0,
-            controller: actionBarController,
-            onScroll: (scrPos) => {
-              this.setState(() {
-                scrollPosition = scrPos.pixels + 0;
-                maxScroll = scrPos.maxScrollExtent + 0;
-              }),
-              setCurrentScreenIndex(),
-            },
-            builder: (_, index) {
-              return screensData[index]['widget'].runtimeType == String
-                  ? Container(
-                      width: size.height,
-                      decoration: BoxDecoration(
-                        //borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black.withAlpha(100),
-                              blurRadius: 10),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            screensData[index]['widget'],
-                            style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      //padding: EdgeInsets.all(20),
-                    )
-                  : screensData[index]['widget'];
-            },
-          ),
-          Container(
-            alignment: Alignment.centerRight,
-            padding: EdgeInsets.only(right: 10),
-            child: Container(
-                height: size.height / 1.5,
-                width: 75, //size.width * 0.1,
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                //width: size.width * 0.1,
-                //alignment: Alignment(0.95,0),
-                decoration: BoxDecoration(
-                    color: Colors.white70,
-                    borderRadius: BorderRadius.circular(50),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black87,
-                          blurRadius: 100,
-                          offset: Offset(15, -5))
-                    ]),
-                child: Stack(
-                  children: [
-                    AnimatedContainer(
-                      duration: Duration(milliseconds: 20),
-                      alignment: Alignment(0, getYAlignmentBasedOnScroll()),
-                      child: Container(
-                        width: 50, //size.width *0.1,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: screensData[roundedCurrentScreenIndex]
-                              ['primaryColor'], // Colors.redAccent,
-                          borderRadius: BorderRadius.circular(100),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      // body: OpacityStackedList(size: size, controller: controller, itemsData: itemsData),
+      body: Stack(children: [
+        StackedListView(
+          //padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+          itemCount: data.length,
+          itemExtent: size.height,
+          heightFactor: 1.0,
+          controller: actionBarController,
+          onScroll: (scrPos) => {
+            this.setState(() {
+              scrollPosition = scrPos.pixels + 0;
+              maxScroll = scrPos.maxScrollExtent + 0;
+            }),
+            setCurrentScreenIndex(),
+          },
+          builder: (_, index) {
+            return screensData[index]['widget'].runtimeType == String
+                ? Container(
+                    width: size.height,
+                    decoration: BoxDecoration(
+                      //borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withAlpha(100),
+                            blurRadius: 10),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          screensData[index]['widget'],
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                      ),
+                      ],
                     ),
-                    Container(
-                      width: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ...screensData.map(
-                            (item) => InkWell(
-                              onTap: () =>
-                                  moveListToIndex(screensData.indexOf(item)),
-                              onHover: (hover) => actionBarItemHovered(
-                                  hover, screensData.indexOf(item)),
-                              child: Tooltip(
-                                child: Icon(
-                                  item['icon'],
-                                  color: getActionBarIconColorOnHover(
-                                      screensData.indexOf(
-                                          item)), // hoveredIndex == screensData.indexOf(item) ? item['primaryColor'] :  Colors.black,
-                                ),
-                                message: item['tooltip'],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                )),
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            child: Icon(
-              Icons.expand_more,
-              color: Colors.white10,
-              size: 100,
+                    //padding: EdgeInsets.all(20),
+                  )
+                : screensData[index]['widget'];
+          },
+        ),
+        FloatingActionBar(
+            size: size,
+            preciseCurrentScreenIndex: preciseCurrentScreenIndex,
+            roundedCurrentScreenIndex: roundedCurrentScreenIndex,
+            yOffset: getYAlignmentBasedOnScroll(),
+            moveListToIndex: moveListToIndex,
             ),
-          )
-        ]),
-      ),
-      // ),
+        Container(
+          alignment: Alignment.bottomCenter,
+          child: Icon(
+            Icons.expand_more,
+            color: Colors.white10,
+            size: 100,
+          ),
+        )
+      ]),
     );
   }
 }
