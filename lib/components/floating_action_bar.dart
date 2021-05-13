@@ -62,7 +62,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
         widget.preciseCurrentScreenIndex <= index + 0.3)) {
       return isHovered ? Colors.black : Colors.white;
     } else {
-      return isHovered ? screensData[index]['primaryColor'] : Colors.black;
+      return isHovered ? screensData[index].primaryColor : Colors.black;
     }
   }
 
@@ -111,7 +111,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                     //width: widget.size.width * 0.1,
                     //alignment: Alignment(0.95,0),
                     decoration: BoxDecoration(
-                      color: Colors.white70,
+                      color: Colors.white54,
                       borderRadius: BorderRadius.circular(50),
                       // boxShadow: [
                       //   BoxShadow(
@@ -129,8 +129,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                             width: 50, //size.width *0.1,
                             height: 50,
                             decoration: BoxDecoration(
-                              color: screensData[widget.roundedCurrentScreenIndex]
-                                  ['primaryColor'], // Colors.redAccent,
+                              color: screensData[widget.roundedCurrentScreenIndex].primaryColor, // Colors.redAccent,
                               borderRadius: BorderRadius.circular(100),
                             ),
                           ),
@@ -149,12 +148,12 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                                       hover, screensData.indexOf(item)),
                                   child: Tooltip(
                                     child: Icon(
-                                      item['icon'],
+                                      item.icon,
                                       color: getActionBarIconColorOnHover(
                                           screensData.indexOf(
                                               item)), // hoveredIndex == screensData.indexOf(item) ? item['primaryColor'] :  Colors.black,
                                     ),
-                                    message: item['tooltip'],
+                                    message: item.tooltip,
                                   ),
                                 ),
                               ),
@@ -177,7 +176,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                     // disabledElevation: disabledElevation,
                     constraints: const BoxConstraints(minHeight:50,minWidth:50),
                     // materialTapTargetSize: materialTapTargetSize,
-                    fillColor: screensData[widget.roundedCurrentScreenIndex]['primaryColor'],
+                    fillColor: screensData[widget.roundedCurrentScreenIndex].primaryColor,
                     // focusColor: focusColor,
                     //hoverColor: Colors.black,
                     // splashColor: splashColor,
