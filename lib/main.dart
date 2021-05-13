@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/floating_action_bar.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'components/stacked_list_view.dart';
-import 'data/primary.dart';
+//import 'components/stacked_list_view.dart';
+import 'package:portfolio/data/primary.dart';
+import 'package:portfolio/data/screens_data.dart';
 import 'screens/home.dart';
 
 void main() {
