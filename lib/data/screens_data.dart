@@ -26,7 +26,7 @@ var screensData = [
     icon:Icons.details_outlined,
     tooltip: "About",
     widget: AboutScreen(),
-    primaryColor: Color(0xFF3D173F),
+    primaryColor: Colors.redAccent,
      ),
   new ScreenData(
     icon:Icons.house_outlined,

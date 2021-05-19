@@ -118,17 +118,17 @@ class StackedListViewState extends State<StackedListView> {
                 atFirst = true;
               }
 
-              // if (currentScroll >= widget.fadeOutFrom) {
-              //   if (widget.fadeOutFrom == 1) {
-              //     opacity = 0;
-              //   } else {
-              //     final fadeOut =
-              //         ((1 - currentScroll) / (1.0 - widget.fadeOutFrom))
-              //             .clamp(0.0, 1.0);
-              //     opacity = lerpDouble(0.0, 1.0, fadeOut)!;
-              //   }
-              //   // if (index == 0) print('$fadeOut');
-              // }
+              if (currentScroll >= widget.fadeOutFrom) {
+                if (widget.fadeOutFrom == 1) {
+                  opacity = 0;
+                } else {
+                  final fadeOut =
+                      ((1 - currentScroll) / (1.0 - widget.fadeOutFrom))
+                          .clamp(0.0, 1.0);
+                  opacity = lerpDouble(0.0, 1.0, fadeOut)!;
+                }
+                // if (index == 0) print('$fadeOut');
+              }
 
               offset = (currentScroll * realExtent).roundToDouble();
             }

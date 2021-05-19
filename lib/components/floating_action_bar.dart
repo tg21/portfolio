@@ -129,7 +129,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                             width: 50, //size.width *0.1,
                             height: 50,
                             decoration: BoxDecoration(
-                              color: screensData[widget.roundedCurrentScreenIndex].primaryColor, // Colors.redAccent,
+                              color: screensData[widget.roundedCurrentScreenIndex < 0 ? 0 : widget.roundedCurrentScreenIndex].primaryColor, // Colors.redAccent,
                               borderRadius: BorderRadius.circular(100),
                             ),
                           ),
@@ -176,7 +176,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                     // disabledElevation: disabledElevation,
                     constraints: const BoxConstraints(minHeight:50,minWidth:50),
                     // materialTapTargetSize: materialTapTargetSize,
-                    fillColor: screensData[widget.roundedCurrentScreenIndex].primaryColor,
+                    fillColor: screensData[widget.roundedCurrentScreenIndex < 0 ? 0 : widget.roundedCurrentScreenIndex].primaryColor,
                     // focusColor: focusColor,
                     //hoverColor: Colors.black,
                     // splashColor: splashColor,
