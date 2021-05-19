@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:portfolio/data/primary.dart';
 import 'package:portfolio/data/types.dart';
+import 'package:responsive_framework/responsive_row_column.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 
 class AboutScreen extends StatelessWidget {
   @override
@@ -9,6 +11,9 @@ class AboutScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Center(
       child: Container(
+        constraints: BoxConstraints(
+          minHeight: size.height,
+        ),
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(AboutData.bg_image), fit: BoxFit.cover),
@@ -23,45 +28,117 @@ class AboutScreen extends StatelessWidget {
           //  color: Color(0xFF090654),
         ),
         child: Container(
-          color: Color.fromARGB(175, 33, 0, 31),
+          color: Color.fromARGB(225, 33, 0, 31),
           //padding: EdgeInsets.only(top: 10, left: 30, right: 10),
           padding: EdgeInsets.symmetric(horizontal: 50),
-          child: Center(
-            child: Column(
-              children: [
-                HeaderRow(
-                  icon: Icons.person,
-                  heading: AboutData.screenTitle,
-                ),
-                Container(
-                  //About User
-                  padding: EdgeInsets.only(right: 10, top: 20),
-                  child: Text(
-                    AboutData.about_summary,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white70,
-                    ),
-                    textAlign: TextAlign.justify,
+          child: Column(
+            children: [
+              HeaderRow(
+                icon: Icons.person,
+                heading: AboutData.screenTitle,
+              ),
+              Container(
+                //About User
+                padding: EdgeInsets.only(right: 10, top: 20),
+                child: Text(
+                  AboutData.about_summary,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white70,
                   ),
+                  textAlign: TextAlign.justify,
                 ),
-                HeaderRow(
-                  icon: Icons.work,
-                  heading: "Experience",
+              ),
+              HeaderRow(
+                icon: Icons.work,
+                heading: "Experience",
+              ),
+              Container(
+                child: ResponsiveRowColumn(
+                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //crossAxisAlignment: CrossAxisAlignment.start,
+                    rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    rowCrossAxisAlignment: CrossAxisAlignment.start,
+                    rowColumn:
+                        !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+                    children: [
+                      ...AboutData.experience
+                          .map((exp) => ResponsiveRowColumnItem(
+                                child: ExperienceTile(
+                                  size: size,
+                                  exp: exp,
+                                ),
+                              ))
+                    ]),
+              ),
+              HeaderRow(
+                icon: Icons.school,
+                heading: "Education",
+              ),
+              Container(
+                margin: EdgeInsets.only(
+                  top: 10,
                 ),
-                Container(
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ...AboutData.experience.map((exp) => ExperienceTile(
-                              size: size,
-                              exp: exp,
-                            ))
-                      ]),
-                )
-              ],
-            ),
+                child: ResponsiveRowColumn(
+                  rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  rowCrossAxisAlignment: CrossAxisAlignment.start,
+                  rowColumn:
+                      !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+                  children: [
+                    ...AboutData.education.map((ed) => ResponsiveRowColumnItem(
+                          child: Container(
+                            //width: 275,
+                            //height: 275,
+                            margin: EdgeInsets.symmetric(vertical: 10),
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: ed.color,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal:8.0),
+                                  child: Text(
+                                    ed.degree,
+                                    style: TextStyle(
+                                        color: ed.fontColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        ),
+                                        softWrap: true,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    ed.college,
+                                    style: TextStyle(
+                                        color: ed.fontColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                        softWrap: true,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    ed.timeSpan,
+                                    style: TextStyle(
+                                        color: ed.fontColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13),
+                                        softWrap: true,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ))
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -83,8 +160,10 @@ class ExperienceTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(10),
-        constraints: BoxConstraints(
-            maxWidth: size.width / (AboutData.experience.length + 1)),
+        // constraints: BoxConstraints(
+        //     maxWidth: size.width / (AboutData.experience.length + 1)
+        //     ),
+        width: 275,
         child: IntrinsicHeight(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,7 +204,8 @@ class ExperienceTile extends StatelessWidget {
                       ),
                       Container(
                         height: 2,
-                        width: size.width / (AboutData.experience.length + 1),
+                        width:
+                            275, //size.width / (AboutData.experience.length + 1),
                         color: exp.color,
                       ),
                       //if(exp.info != null)
