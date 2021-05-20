@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:portfolio/components/responsive_grid.dart';
 import 'package:portfolio/data/primary.dart';
 import 'package:portfolio/data/types.dart';
-import 'package:responsive_framework/responsive_row_column.dart';
-import 'package:responsive_framework/responsive_wrapper.dart';
+// import 'package:responsive_framework/responsive_framework.dart';
+// import 'package:responsive_framework/responsive_row_column.dart';
+// import 'package:responsive_framework/responsive_wrapper.dart';
 
 class AboutScreen extends StatelessWidget {
   @override
@@ -17,14 +19,14 @@ class AboutScreen extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(AboutData.bg_image), fit: BoxFit.cover),
-          gradient: LinearGradient(colors: [
-            Colors.black,
-            Colors.black54
-            // Color(0xFF090654),
-            // Color(0xFF2D0E41),
-            // Color(0xFF441333),
-            // Color(0xFF77262A),
-          ]),
+          // gradient: LinearGradient(colors: [
+          //   Colors.black,
+          //   Colors.black54
+          //   // Color(0xFF090654),
+          //   // Color(0xFF2D0E41),
+          //   // Color(0xFF441333),
+          //   // Color(0xFF77262A),
+          // ]),
           //  color: Color(0xFF090654),
         ),
         child: Container(
@@ -54,23 +56,45 @@ class AboutScreen extends StatelessWidget {
                 heading: "Experience",
               ),
               Container(
-                child: ResponsiveRowColumn(
-                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //crossAxisAlignment: CrossAxisAlignment.start,
-                    rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    rowCrossAxisAlignment: CrossAxisAlignment.start,
-                    rowColumn:
-                        !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
-                    children: [
-                      ...AboutData.experience
-                          .map((exp) => ResponsiveRowColumnItem(
-                                child: ExperienceTile(
+                // child: ResponsiveRowColumn(
+                //     //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //     //crossAxisAlignment: CrossAxisAlignment.start,
+                //     rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     rowCrossAxisAlignment: CrossAxisAlignment.start,
+                //     rowColumn:
+                //         !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+                //     children: [
+                //       ...AboutData.experience
+                //           .map((exp) => ResponsiveRowColumnItem(
+                //                 child: ExperienceTile(
+                //                   size: size,
+                //                   exp: exp,
+                //                 ),
+                //               ))
+                //     ]),
+                child: ResponsiveGridRow(
+                  // rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // rowCrossAxisAlignment: CrossAxisAlignment.start,
+                  // rowColumn:
+                  //     !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+                  // rowSegments: 4,
+
+                  children: [
+                    ...AboutData.experience.map((ex) => 
+                            ResponsiveGridCol(
+                              lg: 3,
+                              md: 4,
+                              sm: 6,
+                              child:  ExperienceTile(
                                   size: size,
-                                  exp: exp,
+                                  exp: ex,
                                 ),
-                              ))
-                    ]),
+                            ),
+                          ),
+                  ],
+                ),
               ),
+              
               HeaderRow(
                 icon: Icons.school,
                 heading: "Education",
@@ -79,68 +103,99 @@ class AboutScreen extends StatelessWidget {
                 margin: EdgeInsets.only(
                   top: 10,
                 ),
-                child: ResponsiveRowColumn(
-                  rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  rowCrossAxisAlignment: CrossAxisAlignment.start,
-                  rowColumn:
-                      !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+                // child: ResponsiveRowColumn(
+                //   rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   rowCrossAxisAlignment: CrossAxisAlignment.start,
+                //   rowColumn:
+                //       !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+                //   children: [
+                //     ...AboutData.education.map((ed) => ResponsiveRowColumnItem(
+                //           child: EducationTIle(),
+                //         )),
+                //   ],
+                // ),
+                child: ResponsiveGridRow(
+                  // rowMainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // rowCrossAxisAlignment: CrossAxisAlignment.start,
+                  // rowColumn:
+                  //     !ResponsiveWrapper.of(context).isSmallerThan(DESKTOP),
+                  // rowSegments: 4,
+
                   children: [
-                    ...AboutData.education.map((ed) => ResponsiveRowColumnItem(
-                          child: Container(
-                            //width: 275,
-                            //height: 275,
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                color: ed.color,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal:8.0),
-                                  child: Text(
-                                    ed.degree,
-                                    style: TextStyle(
-                                        color: ed.fontColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                        ),
-                                        softWrap: true,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    ed.college,
-                                    style: TextStyle(
-                                        color: ed.fontColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
-                                        softWrap: true,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    ed.timeSpan,
-                                    style: TextStyle(
-                                        color: ed.fontColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 13),
-                                        softWrap: true,
-                                  ),
-                                ),
-                              ],
+                    ...AboutData.education.map((ed) => 
+                            ResponsiveGridCol(
+                              lg: 3,
+                              md: 4,
+                              sm: 6,
+                              child: EducationTIle(data: ed,),
                             ),
                           ),
-                        ))
                   ],
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class EducationTIle extends StatelessWidget {
+  const EducationTIle({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
+
+  final EducationData data;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      //width: 275,
+      //height: 275,
+      margin: EdgeInsets.symmetric(vertical: 10,horizontal:10),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          color: data.color,
+          borderRadius: BorderRadius.circular(10)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:8.0),
+            child: Text(
+              data.degree,
+              style: TextStyle(
+                  color: data.fontColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  ),
+                  softWrap: true,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              data.college,
+              style: TextStyle(
+                  color: data.fontColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15),
+                  softWrap: true,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              data.timeSpan,
+              style: TextStyle(
+                  color: data.fontColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13),
+                  softWrap: true,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -163,7 +218,7 @@ class ExperienceTile extends StatelessWidget {
         // constraints: BoxConstraints(
         //     maxWidth: size.width / (AboutData.experience.length + 1)
         //     ),
-        width: 275,
+        //width: 275,
         child: IntrinsicHeight(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -204,8 +259,7 @@ class ExperienceTile extends StatelessWidget {
                       ),
                       Container(
                         height: 2,
-                        width:
-                            275, //size.width / (AboutData.experience.length + 1),
+                        // width:275,
                         color: exp.color,
                       ),
                       //if(exp.info != null)
