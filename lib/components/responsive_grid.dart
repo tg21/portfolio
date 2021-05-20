@@ -113,12 +113,16 @@ class ResponsiveGridRow extends StatelessWidget {
       height: this.height,
       width: this.width,
       decoration: this.decoration,
-      child: Expanded(
-        flex: 1,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: rows,
-          ),),
+      child: Row(
+              children: [
+              Expanded(
+          flex: 1,
+          child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: rows,
+              ),),
+            ],
+      ),
       //children: rows,
     );
   }
