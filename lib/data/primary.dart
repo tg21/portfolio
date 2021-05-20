@@ -40,14 +40,14 @@ class AboutData {
         jobTitle: "Software Engineer",
         timeSpan: "July 2019 - May 2021",
         info:
-            "Worked as full-stack developer for random project and developed In-House tools"),
+            "Worked as full-stack developer for random project and developed In-House tools Worked as full-stack developer for random project and developed In-House tools Worked as full-stack developer for random project and developed In-House tools Worked as full-stack developer for random project and developed In-House tools Worked as full-stack developer for random project and developed In-House tools"),
     const ExperianceData(
-        organisation: "Random Industries",
-        jobTitle: "Software Engineer",
-        timeSpan: "31 July 2019 - 14 May 2021",
-        color: Colors.redAccent
-        //info: "Worked as full-stack developer for Sample project and developed In-House tools"
-        ),
+      organisation: "Random Industries",
+      jobTitle: "Software Engineer",
+      timeSpan: "31 July 2019 - 14 May 2021",
+      color: Colors.deepPurpleAccent,
+      //info: "Worked as full-stack developer for Sample project and developed In-House tools"
+    ),
   ];
 
   static const List<EducationData> education = [
@@ -55,7 +55,8 @@ class AboutData {
       degree: "Masters in Computer Applications",
       college: "IGNOU",
       timeSpan: "July 19- Huly 22",
-      color: Colors.deepOrangeAccent,
+      color: Colors.teal,
+      fontColor: Colors.white,
     ),
     const EducationData(
       degree: "Masters in Computer Applications",
@@ -76,4 +77,138 @@ class AboutData {
     ),
   ];
   static const bg_image = "images/2about.webp";
+}
+
+class SkillsData {
+  static const bg_image = "Images/3showcase.webp";
+  static const list_title = "skills";
+  static const List<SkillsFormat> skills = [
+    const SkillsFormat(
+        skillName: "python",
+        expirenceTimeWithSkill: "4+ years",
+        details: "I have worked on few of my personal python projects.",
+        certificationsAvailable: true,
+        certifications: [
+          const CertificationData(
+            certification: "SoloLearn Python Certification",
+            validaity: "lifetime",
+            url: "https://google.com",
+            image: "images/man.png",
+            infoCertificate: "Completed Python Course with Solo Learn",
+          ),
+          const CertificationData(
+            certification: "SoloLearn Conda Certification",
+            validaity: "lifetime",
+            url: "https://google.com",
+            image: "images/man.png",
+            infoCertificate: "Completed Conda Course with Solo Learn",
+          ),
+        ],
+        projectsAvailable: true,
+        projects: [
+          const ProjectsData(
+            project: "Python On Pails",
+            duration: "2018 - Current",
+            aboutCproject: "Python On Pails is an OpenSource lightweight web development framework that is designed to speed up development process",
+            image: "images/man.png",
+            url: "https://github.com",
+          ),
+          const ProjectsData(
+            project: "WiBuster",
+            duration: "2018 - Current",
+            aboutCproject: "WiBuseter is an opesource website enumerator made with python3",
+            image: "images/man.png",
+            url: "https://github.com",
+          ),
+        ]
+        ),
+    const SkillsFormat(
+        skillName: "Flutter",
+        expirenceTimeWithSkill: "1+ years",
+        details: "I have worked on few of my personal Flutter projects.",
+        certificationsAvailable: true,
+        certifications: [
+          const CertificationData(
+            certification: "App Brewery Introduction to flutter Certification",
+            validaity: "lifetime",
+            url: "https://google.com",
+            image: "images/man.png",
+            infoCertificate: "Completed Flutter Course with App Brewery",
+          ),
+          const CertificationData(
+            certification: "SoloLearn Dart Certification",
+            validaity: "lifetime",
+            url: "https://google.com",
+            image: "images/man.png",
+            infoCertificate: "Completed Dart Course with Solo Learn",
+          ),
+        ],
+        projectsAvailable: true,
+        projects: [
+          const ProjectsData(
+            project: "The Last Dino Run",
+            duration: "2020 - 2021",
+            aboutCproject: "An android game based on Chrome's game made with flutter from scratch without using any game engines like flame or unity",
+            image: "images/man.png",
+            url: "https://github.com",
+          ),
+          const ProjectsData(
+            project: "This Website",
+            duration: "2021 - 2021",
+            aboutCproject: "WiBuseter is an opesource website enumerator made with python3",
+            image: "images/man.png",
+            url: "https://github.com",
+          ),
+        ]
+        ),
+  ];
+}
+
+class SkillsFormat {
+  final String skillName;
+  final String expirenceTimeWithSkill;
+  final String details;
+  final bool certificationsAvailable;
+  final List<CertificationData>? certifications;
+  final bool projectsAvailable;
+  final List<ProjectsData>? projects;
+
+  const SkillsFormat(
+      {required this.skillName,
+      required this.expirenceTimeWithSkill,
+      required this.details,
+      required this.certificationsAvailable,
+      this.certifications,
+      required this.projectsAvailable,
+      this.projects});
+}
+
+class CertificationData {
+  final String certification;
+  final String? image;
+  final String validaity;
+  final String? url;
+  final String? infoCertificate;
+
+  const CertificationData(
+      {required this.certification,
+      this.image,
+      required this.validaity,
+      this.url,
+      this.infoCertificate});
+}
+
+class ProjectsData {
+  final String project;
+  final String aboutCproject;
+  final String duration;
+  final String? url;
+  final String? image;
+
+  const ProjectsData(
+      {required this.project,
+      required this.aboutCproject,
+      required this.duration,
+      this.url,
+      this.image});
 }

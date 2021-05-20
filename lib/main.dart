@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
           breakpoints: [
             ResponsiveBreakpoint.resize(450, name: MOBILE),
             ResponsiveBreakpoint.autoScale(800, name: TABLET),
-            ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-            ResponsiveBreakpoint.resize(1360, name: DESKTOP),
+            ResponsiveBreakpoint.resize(1000, name: TABLET),
+            ResponsiveBreakpoint.resize(1200, name: DESKTOP),
             ResponsiveBreakpoint.autoScale(2460, name: "4K"),
           ],
           background: Container(color: Color(0xFFF5F5F5))),
@@ -260,14 +260,14 @@ class _MyHomePageState extends State<MyHomePage> {
             yOffset: getYAlignmentBasedOnScroll(),
             moveListToIndex: moveListToIndex,
             ),
-        Container(
-          alignment: Alignment.bottomCenter,
-          child: Icon(
-            Icons.expand_more,
-            color: Colors.white10,
-            size: 100,
-          ),
-        )
+        // Container(
+        //   alignment: Alignment.bottomCenter,
+        //   child: Icon(
+        //     Icons.expand_more,
+        //     color: Colors.white10,
+        //     size: 100,
+        //   ),
+        // )
       ]),
     );
   }

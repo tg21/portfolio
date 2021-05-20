@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:portfolio/screens/home.dart';
 import 'package:portfolio/screens/about.dart';
+import 'package:portfolio/screens/skills.dart';
 
 class ScreenData{
   final IconData icon;
@@ -22,17 +23,25 @@ class ScreenData{
 
 //mainly data for actionbar
 var screensData = [
+  // new ScreenData(
+  //   icon:Icons.house_outlined,
+  //   tooltip: "Home",
+  //   widget: HomeScreen(),
+  //   primaryColor: Color(0xFF3D173F),
+  //    ),
+  // new ScreenData(
+  //   icon:Icons.details_outlined,
+  //   tooltip: "About",
+  //   widget: AboutScreen(),
+  //   primaryColor: Colors.redAccent,
+  //    ),
+  
+     
   new ScreenData(
-    icon:Icons.details_outlined,
-    tooltip: "About",
-    widget: AboutScreen(),
-    primaryColor: Colors.redAccent,
-     ),
-  new ScreenData(
-    icon:Icons.house_outlined,
-    tooltip: "Home",
-    widget: HomeScreen(),
-    primaryColor: Color(0xFF3D173F),
+    icon:Icons.developer_mode_outlined,
+    tooltip: "Skills",
+    widget: SkillScreen(),
+    primaryColor: Colors.pink,
      ),
      
   
