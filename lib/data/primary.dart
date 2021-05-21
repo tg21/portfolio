@@ -87,7 +87,6 @@ class SkillsData {
         skillName: "python",
         expirenceTimeWithSkill: "4+ years",
         details: "I have worked on few of my personal python projects.",
-        certificationsAvailable: true,
         certifications: [
           const CertificationData(
             certification: "SoloLearn Python Certification",
@@ -104,7 +103,6 @@ class SkillsData {
             infoCertificate: "Completed Conda Course with Solo Learn",
           ),
         ],
-        projectsAvailable: true,
         projects: [
           const ProjectsData(
             project: "Python On Pails",
@@ -126,7 +124,6 @@ class SkillsData {
         skillName: "Flutter",
         expirenceTimeWithSkill: "1+ years",
         details: "I have worked on few of my personal Flutter projects.",
-        certificationsAvailable: true,
         certifications: [
           const CertificationData(
             certification: "App Brewery Introduction to flutter Certification",
@@ -143,7 +140,6 @@ class SkillsData {
             infoCertificate: "Completed Dart Course with Solo Learn",
           ),
         ],
-        projectsAvailable: true,
         projects: [
           const ProjectsData(
             project: "The Last Dino Run",
@@ -168,19 +164,15 @@ class SkillsFormat {
   final String skillName;
   final String expirenceTimeWithSkill;
   final String details;
-  final bool certificationsAvailable;
-  final List<CertificationData>? certifications;
-  final bool projectsAvailable;
-  final List<ProjectsData>? projects;
+  final List<CertificationData> certifications;
+  final List<ProjectsData> projects;
 
   const SkillsFormat(
       {required this.skillName,
       required this.expirenceTimeWithSkill,
       required this.details,
-      required this.certificationsAvailable,
-      this.certifications,
-      required this.projectsAvailable,
-      this.projects});
+      required this.certifications,
+      required this.projects});
 }
 
 class CertificationData {
