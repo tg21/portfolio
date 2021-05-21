@@ -84,7 +84,7 @@ class SkillsData {
   static const list_title = "skills";
   static const List<SkillsFormat> skills = [
     const SkillsFormat(
-        skillName: "python",
+        skillName: "Python",
         expirenceTimeWithSkill: "4+ years",
         details: "I have worked on few of my personal python projects.",
         certifications: [
