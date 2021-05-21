@@ -58,6 +58,7 @@ _GridTier _currentSize(BuildContext context) {
 class ResponsiveGridRow extends StatelessWidget {
   final List<ResponsiveGridCol> children;
   final CrossAxisAlignment crossAxisAlignment;
+  final MainAxisAlignment mainAxisAlignment;
   final int rowSegments;
   final double? height;
   final double? width;
@@ -66,6 +67,7 @@ class ResponsiveGridRow extends StatelessWidget {
   ResponsiveGridRow(
       {required this.children,
       this.crossAxisAlignment = CrossAxisAlignment.start,
+      this.mainAxisAlignment = MainAxisAlignment.start,
       this.rowSegments = 12,this.height,this.width,this.decoration});
 
   @override
@@ -79,11 +81,11 @@ class ResponsiveGridRow extends StatelessWidget {
       var colWidth = col.currentConfig(context) ?? 1;
       //
       if (accumulatedWidth + colWidth > rowSegments) {
-        if (accumulatedWidth < rowSegments) {
-          cols.add(Spacer(
-            flex: rowSegments - accumulatedWidth,
-          ));
-        }
+        // if (accumulatedWidth < rowSegments) {
+        //   cols.add(Spacer(
+        //     flex: rowSegments - accumulatedWidth,
+        //   ));
+        // }
         rows.add(Row(
           children: cols,
         ));
@@ -97,13 +99,14 @@ class ResponsiveGridRow extends StatelessWidget {
     });
 
     if (accumulatedWidth >= 0) {
-      if (accumulatedWidth < rowSegments) {
-        cols.add(Spacer(
-          flex: rowSegments - accumulatedWidth,
-        ));
-      }
+      // if (accumulatedWidth < rowSegments) {
+      //   cols.add(Spacer(
+      //     flex: rowSegments - accumulatedWidth,
+      //   ));
+      // }
       rows.add(Row(
         mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: this.mainAxisAlignment,
         crossAxisAlignment: this.crossAxisAlignment,
         children: cols,
       ));
@@ -113,15 +116,9 @@ class ResponsiveGridRow extends StatelessWidget {
       height: this.height,
       width: this.width,
       decoration: this.decoration,
-      child: Row(
-              children: [
-              Expanded(
-          flex: 1,
-          child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: rows,
-              ),),
-            ],
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: rows,
       ),
       //children: rows,
     );
@@ -155,11 +152,7 @@ class ResponsiveGridCol extends Container {
   Widget build(BuildContext context) {
     return Expanded(
       flex: currentConfig(context) ?? 1,
-      child: Row(
-        children: [
-          Expanded(child: child),
-        ],
-      ),
+      child: Container(child: child),
     );
   }
 }
