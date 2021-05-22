@@ -82,11 +82,14 @@ class AboutData {
 class SkillsData {
   static const bg_image = "Images/3showcase.webp";
   static const list_title = "skills";
+  static const color = Colors.pink;
+  static const fontColor = Colors.black;
+  static const secondFontColor = Colors.white;
   static const List<SkillsFormat> skills = [
     const SkillsFormat(
         skillName: "Python",
         expirenceTimeWithSkill: "4+ years",
-        details: "I have worked on few of my personal python projects.",
+        details: "I have worked on few of my personal python projects. I have worked on few of my personal python projects. I have worked on few of my personal python projects. I have worked on few of my personal python projects. I have worked on few of my personal python projects. I have worked on few of my personal python projects. I have worked on few of my personal python projects.",
         certifications: [
           const CertificationData(
             certification: "SoloLearn Python Certification",
@@ -107,14 +110,14 @@ class SkillsData {
           const ProjectsData(
             project: "Python On Pails",
             duration: "2018 - Current",
-            aboutCproject: "Python On Pails is an OpenSource lightweight web development framework that is designed to speed up development process",
+            aboutProject: "Python On Pails is an OpenSource lightweight web development framework that is designed to speed up development process",
             image: "images/man.png",
             url: "https://github.com",
           ),
           const ProjectsData(
             project: "WiBuster",
             duration: "2018 - Current",
-            aboutCproject: "WiBuseter is an opesource website enumerator made with python3",
+            aboutProject: "WiBuseter is an opesource website enumerator made with python3",
             image: "images/man.png",
             url: "https://github.com",
           ),
@@ -144,14 +147,88 @@ class SkillsData {
           const ProjectsData(
             project: "The Last Dino Run",
             duration: "2020 - 2021",
-            aboutCproject: "An android game based on Chrome's game made with flutter from scratch without using any game engines like flame or unity",
+            aboutProject: "An android game based on Chrome's game made with flutter from scratch without using any game engines like flame or unity",
             image: "images/man.png",
             url: "https://github.com",
           ),
           const ProjectsData(
             project: "This Website",
             duration: "2021 - 2021",
-            aboutCproject: "WiBuseter is an opesource website enumerator made with python3",
+            aboutProject: "WiBuseter is an opesource website enumerator made with python3",
+            image: "images/man.png",
+            url: "https://github.com",
+          ),
+        ]
+        ),
+        const SkillsFormat(
+        skillName: "Angular",
+        expirenceTimeWithSkill: "1+ years",
+        details: "I have worked on few of my personal Flutter projects.",
+        certifications: [
+          const CertificationData(
+            certification: "App Brewery Introduction to flutter Certification",
+            validaity: "lifetime",
+            url: "https://google.com",
+            image: "images/man.png",
+            infoCertificate: "Completed Flutter Course with App Brewery",
+          ),
+          const CertificationData(
+            certification: "SoloLearn Dart Certification",
+            validaity: "lifetime",
+            url: "https://google.com",
+            image: "images/man.png",
+            infoCertificate: "Completed Dart Course with Solo Learn",
+          ),
+        ],
+        projects: [
+          const ProjectsData(
+            project: "The Last Dino Run",
+            duration: "2020 - 2021",
+            aboutProject: "An android game based on Chrome's game made with flutter from scratch without using any game engines like flame or unity",
+            image: "images/man.png",
+            url: "https://github.com",
+          ),
+          const ProjectsData(
+            project: "This Website",
+            duration: "2021 - 2021",
+            aboutProject: "WiBuseter is an opesource website enumerator made with python3",
+            image: "images/man.png",
+            url: "https://github.com",
+          ),
+        ]
+        ),
+        const SkillsFormat(
+        skillName: "React-Native",
+        expirenceTimeWithSkill: "1+ years",
+        details: "I have worked on few of my personal Flutter projects.",
+        certifications: [
+          const CertificationData(
+            certification: "App Brewery Introduction to flutter Certification",
+            validaity: "lifetime",
+            url: "https://google.com",
+            image: "images/man.png",
+            infoCertificate: "Completed Flutter Course with App Brewery",
+          ),
+          const CertificationData(
+            certification: "SoloLearn Dart Certification",
+            validaity: "lifetime",
+            url: "https://google.com",
+            image: "images/man.png",
+            infoCertificate: "Completed Dart Course with Solo Learn",
+          ),
+        ],
+        projects: [
+          const ProjectsData(
+            project: "The Last Dino Run",
+            duration: "2020 - 2021",
+            aboutProject: "An android game based on Chrome's game made with flutter from scratch without using any game engines like flame or unity",
+            image: "images/man.png",
+            url: "https://github.com",
+          ),
+          const ProjectsData(
+            project: "This Website",
+            duration: "2021 - 2021",
+            aboutProject: "WiBuseter is an opesource website enumerator made with python3",
             image: "images/man.png",
             url: "https://github.com",
           ),
@@ -192,14 +269,14 @@ class CertificationData {
 
 class ProjectsData {
   final String project;
-  final String aboutCproject;
+  final String aboutProject;
   final String duration;
   final String? url;
   final String? image;
 
   const ProjectsData(
       {required this.project,
-      required this.aboutCproject,
+      required this.aboutProject,
       required this.duration,
       this.url,
       this.image});

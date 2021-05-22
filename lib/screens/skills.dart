@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:portfolio/components/responsive_grid.dart';
 import 'package:portfolio/data/primary.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,29 +29,35 @@ class _SkillScreenState extends State<SkillScreen> {
         image: DecorationImage(
             image: AssetImage(SkillsData.bg_image), fit: BoxFit.cover),
       ),
-      child: Container(
-        margin: EdgeInsets.all(50),
-        padding: EdgeInsets.all(15),
-        color: Colors.white70,
-        alignment: Alignment.topCenter,
-        child: ResponsiveGridRow(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // List of Skills
-            ResponsiveGridCol(
-              sm: 12,
-              lg: 2,
-              child: SkillsListView(setSkill: _setSkill),
-            ),
-            // Details of skills
-            ResponsiveGridCol(
-              sm: 12,
-              lg: 8,
-              child: SkillDetailView(
-                selectedSkill: selectedSkill,
+      child: DefaultTextStyle(
+        style: TextStyle(color: SkillsData.fontColor),
+        child: Container(
+          margin: EdgeInsets.all(50),
+          padding: EdgeInsets.all(15),
+          color: Colors.white70,
+          alignment: Alignment.topCenter,
+          child: ResponsiveGridRow(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // List of Skills
+              ResponsiveGridCol(
+                sm: 12,
+                lg: 2,
+                child: SkillsListView(
+                  setSkill: _setSkill,
+                  selectedSkill: selectedSkill,
+                  ),
               ),
-            ),
-          ],
+              // Details of skills
+              ResponsiveGridCol(
+                sm: 12,
+                lg: 8,
+                child: SkillDetailView(
+                  selectedSkill: selectedSkill,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -81,17 +88,37 @@ class SkillDetailView extends StatelessWidget {
               ),
             ),
           ),
-          Text(selectedSkill.details),
+          Container(
+            padding: EdgeInsets.all(14),
+            child: Text(
+              selectedSkill.details,
+              style: TextStyle(
+                  color: Colors.black87,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 15),
+              softWrap: true,
+            ),
+          ),
+          // Certification Row Starts
           if (selectedSkill.certifications.isNotEmpty)
             Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Certifications",
-                      style: TextStyle(
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.card_membership,
+                        size: 35,
+                      ),
+                      Text("Certifications",
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ],
+                  ),
                   ResponsiveGridRow(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -100,87 +127,197 @@ class SkillDetailView extends StatelessWidget {
                             lg: 6,
                             md: 12,
                             child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border(
-                                      right: BorderSide(
-                                          width: 1.0, color: Colors.black)),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      cert.image!,
-                                      height: 100,
-                                      fit: BoxFit.contain,
-                                      scale: 100,
-                                    ),
-                                    Expanded(
-                                                                          child: Container(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Center(
-                                                child: Text(
-                                              cert.certification,
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold),
-                                                  softWrap: true,
-                                            )),
-                                            Text(
-                                              cert.infoCertificate!,
-                                              softWrap: true,
-                                              ),
-                                            Row(
+                              // decoration: BoxDecoration(
+                              //   color: Colors.white,
+                              //   border: Border(
+                              //       right: BorderSide(
+                              //           width: 1.0, color: Colors.black)),
+                              // ),
+                              padding: EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    cert.image!,
+                                    height: 100,
+                                    fit: BoxFit.contain,
+                                    scale: 100,
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Center(
+                                              child: Text(
+                                            cert.certification,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                            softWrap: true,
+                                          )),
+                                          Text(
+                                            cert.infoCertificate!,
+                                            style: TextStyle(fontSize: 16),
+                                            softWrap: true,
+                                          ),
+                                          DefaultTextStyle(
+                                            style: TextStyle(fontSize: 12),
+                                            child: Row(
                                               children: [
                                                 Text(
                                                   "validity: ",
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.bold),
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                                 ),
                                                 Text(cert.validaity),
                                               ],
                                             ),
-                                            InkWell(
-                                                onTap: () {
-                                                  _launchURL(cert.url!);
-                                                },
-                                                child: Text("view")),
-                                          ],
-                                        ),
+                                          ),
+                                          RawMaterialButton(
+                                            fillColor: SkillsData.color,
+                                            hoverElevation: 10,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            textStyle: TextStyle(
+                                              color: SkillsData.secondFontColor,
+                                            ),
+                                            child: Text("view"),
+                                            onPressed: () {
+                                              _launchURL(cert.url!);
+                                            },
+                                          ),
+                                        ],
                                       ),
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  )
+                                ],
                               ),
+                            ),
                           ),
                         ),
                       ]),
                 ],
               ),
-            )
+            ),
+
+          // Projects Row Starts
+          if (selectedSkill.projects.isNotEmpty)
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.developer_board_outlined,
+                        size: 35,
+                      ),
+                      Text("Projects",
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ],
+                  ),
+                  ResponsiveGridRow(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ...selectedSkill.projects.map(
+                          (cert) => ResponsiveGridCol(
+                            lg: 6,
+                            md: 12,
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    cert.image!,
+                                    height: 100,
+                                    fit: BoxFit.contain,
+                                    scale: 100,
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Center(
+                                              child: Text(
+                                            cert.project,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                            softWrap: true,
+                                          )),
+                                          Text(
+                                            cert.aboutProject,
+                                            style: TextStyle(fontSize: 16),
+                                            softWrap: true,
+                                          ),
+                                          DefaultTextStyle(
+                                            style: TextStyle(fontSize: 12),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  "validity: ",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Text(cert.duration),
+                                              ],
+                                            ),
+                                          ),
+                                          RawMaterialButton(
+                                            fillColor: Colors.pink,
+                                            hoverElevation: 10,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            textStyle: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                            child: Text("view"),
+                                            onPressed: () {
+                                              _launchURL(cert.url!);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]),
+                ],
+              ),
+            ),
         ],
       ),
     );
   }
 }
 
-class SkillsListView extends StatefulWidget {
+
+class SkillsListView extends StatelessWidget {
   final Function setSkill;
+  final SkillsFormat selectedSkill;
 
-  SkillsListView({required this.setSkill});
-  @override
-  _SkillsListViewState createState() => _SkillsListViewState();
-}
+  SkillsListView({required this.setSkill, required this.selectedSkill});
 
-class _SkillsListViewState extends State<SkillsListView> {
-  int hoveredSkill = -1;
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          border: Border(right: BorderSide(width: 1.0, color: Colors.black))),
+      // decoration: BoxDecoration(
+      //     border: Border(right: BorderSide(width: 1.0, color: Colors.black))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -198,25 +335,22 @@ class _SkillsListViewState extends State<SkillsListView> {
           ),
           ...SkillsData.skills.map((e) => Container(
                 margin: EdgeInsets.all(5),
-                child: InkWell(
-                  onTap: () {
-                    widget.setSkill(e);
-                  },
-                  onHover: (hover) {
-                    setState(() {
-                      hoveredSkill = hover ? SkillsData.skills.indexOf(e) : -1;
-                    });
-                  },
-                  child: Text(
-                    e.skillName,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: SkillsData.skills.indexOf(e) == hoveredSkill
-                          ? FontWeight.bold
-                          : FontWeight.normal,
-                    ),
+                child: RawMaterialButton(
+                  fillColor: e == selectedSkill
+                          ? SkillsData.color
+                          : Colors.transparent,
+                  elevation: 0,
+                  hoverElevation: 0,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  textStyle: TextStyle(
+                    color: e == selectedSkill
+                          ? SkillsData.secondFontColor
+                          : SkillsData.fontColor,
                   ),
-                ),
+                  child: Text(e.skillName),
+                  onPressed: () {
+                    setSkill(e);
+                  },),
               ))
         ],
       ),
