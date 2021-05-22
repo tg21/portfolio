@@ -46,7 +46,7 @@ class _SkillScreenState extends State<SkillScreen> {
                 child: SkillsListView(
                   setSkill: _setSkill,
                   selectedSkill: selectedSkill,
-                  ),
+                ),
               ),
               // Details of skills
               ResponsiveGridCol(
@@ -112,6 +112,9 @@ class SkillDetailView extends StatelessWidget {
                         Icons.card_membership,
                         size: 35,
                       ),
+                      SizedBox(
+                        width: 15,
+                      ),
                       Text("Certifications",
                           style: TextStyle(
                             fontSize: 35,
@@ -156,11 +159,17 @@ class SkillDetailView extends StatelessWidget {
                                                 fontWeight: FontWeight.bold),
                                             softWrap: true,
                                           )),
+                                          SizedBox(
+                        height: 5,
+                      ),
                                           Text(
                                             cert.infoCertificate!,
                                             style: TextStyle(fontSize: 16),
                                             softWrap: true,
                                           ),
+                                          SizedBox(
+                        height: 5,
+                      ),
                                           DefaultTextStyle(
                                             style: TextStyle(fontSize: 12),
                                             child: Row(
@@ -182,7 +191,7 @@ class SkillDetailView extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                             textStyle: TextStyle(
-                                              color: SkillsData.secondFontColor,
+                                              color: SkillsData.buttonFontColor,
                                             ),
                                             child: Text("view"),
                                             onPressed: () {
@@ -206,7 +215,7 @@ class SkillDetailView extends StatelessWidget {
           // Projects Row Starts
           if (selectedSkill.projects.isNotEmpty)
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: EdgeInsets.only(top: 20,bottom: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -215,6 +224,9 @@ class SkillDetailView extends StatelessWidget {
                       Icon(
                         Icons.developer_board_outlined,
                         size: 35,
+                      ),
+                      SizedBox(
+                        width: 15,
                       ),
                       Text("Projects",
                           style: TextStyle(
@@ -227,7 +239,7 @@ class SkillDetailView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ...selectedSkill.projects.map(
-                          (cert) => ResponsiveGridCol(
+                          (proj) => ResponsiveGridCol(
                             lg: 6,
                             md: 12,
                             child: Container(
@@ -235,7 +247,7 @@ class SkillDetailView extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Image.asset(
-                                    cert.image!,
+                                    proj.image!,
                                     height: 100,
                                     fit: BoxFit.contain,
                                     scale: 100,
@@ -248,44 +260,76 @@ class SkillDetailView extends StatelessWidget {
                                         children: [
                                           Center(
                                               child: Text(
-                                            cert.project,
+                                            proj.project,
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold),
                                             softWrap: true,
                                           )),
+                                          SizedBox(
+                        height: 5,
+                      ),
                                           Text(
-                                            cert.aboutProject,
+                                            proj.aboutProject,
                                             style: TextStyle(fontSize: 16),
                                             softWrap: true,
                                           ),
+                                          SizedBox(
+                        height: 5,
+                      ),
                                           DefaultTextStyle(
                                             style: TextStyle(fontSize: 12),
                                             child: Row(
                                               children: [
                                                 Text(
-                                                  "validity: ",
+                                                  "Duration: ",
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
-                                                Text(cert.duration),
+                                                Text(proj.duration),
                                               ],
                                             ),
                                           ),
-                                          RawMaterialButton(
-                                            fillColor: Colors.pink,
-                                            hoverElevation: 10,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            textStyle: TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                            child: Text("view"),
-                                            onPressed: () {
-                                              _launchURL(cert.url!);
-                                            },
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              if (proj.url != null)
+                                                RawMaterialButton(
+                                                  fillColor: Colors.pink,
+                                                  hoverElevation: 10,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                  textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                  child: Text("view"),
+                                                  onPressed: () {
+                                                    _launchURL(proj.url!);
+                                                  },
+                                                ),
+                                              if (proj.sourceUrl != null)
+                                                RawMaterialButton(
+                                                  fillColor: SkillsData
+                                                      .secondaryButtonColor,
+                                                  hoverElevation: 10,
+                                                  padding: EdgeInsets.all(10),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                  textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                  child: Text("Source Code"),
+                                                  onPressed: () {
+                                                    _launchURL(proj.sourceUrl!);
+                                                  },
+                                                ),
+                                            ],
                                           ),
                                         ],
                                       ),
@@ -306,7 +350,6 @@ class SkillDetailView extends StatelessWidget {
   }
 }
 
-
 class SkillsListView extends StatelessWidget {
   final Function setSkill;
   final SkillsFormat selectedSkill;
@@ -316,13 +359,12 @@ class SkillsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // decoration: BoxDecoration(
-      //     border: Border(right: BorderSide(width: 1.0, color: Colors.black))),
-      child: Column(
+      child: ResponsiveGridRow(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
+        shrinkChildren: true,
         children: [
-          Container(
+          ResponsiveGridCol(
             child: Center(
               child: Text(
                 SkillsData.list_title.toUpperCase(),
@@ -333,24 +375,33 @@ class SkillsListView extends StatelessWidget {
               ),
             ),
           ),
-          ...SkillsData.skills.map((e) => Container(
-                margin: EdgeInsets.all(5),
-                child: RawMaterialButton(
-                  fillColor: e == selectedSkill
-                          ? SkillsData.color
-                          : Colors.transparent,
-                  elevation: 0,
-                  hoverElevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                  textStyle: TextStyle(
-                    color: e == selectedSkill
-                          ? SkillsData.secondFontColor
+          ...SkillsData.skills.map((e) => ResponsiveGridCol(
+                lg: 12,
+                md: 2,
+                sm: 3,
+                xs: 3,
+                //margin: EdgeInsets.all(5),
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: RawMaterialButton(
+                    fillColor: e == selectedSkill
+                        ? SkillsData.color
+                        : Colors.transparent,
+                    elevation: 0,
+                    hoverElevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14)),
+                    textStyle: TextStyle(
+                      color: e == selectedSkill
+                          ? SkillsData.buttonFontColor
                           : SkillsData.fontColor,
+                    ),
+                    child: Text(e.skillName),
+                    onPressed: () {
+                      setSkill(e);
+                    },
                   ),
-                  child: Text(e.skillName),
-                  onPressed: () {
-                    setSkill(e);
-                  },),
+                ),
               ))
         ],
       ),

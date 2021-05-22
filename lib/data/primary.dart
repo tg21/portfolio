@@ -83,8 +83,9 @@ class SkillsData {
   static const bg_image = "Images/3showcase.webp";
   static const list_title = "skills";
   static const color = Colors.pink;
+  static const secondaryButtonColor = Colors.blueGrey;
   static const fontColor = Colors.black;
-  static const secondFontColor = Colors.white;
+  static const buttonFontColor = Colors.white;
   static const List<SkillsFormat> skills = [
     const SkillsFormat(
         skillName: "Python",
@@ -194,6 +195,7 @@ class SkillsData {
             aboutProject: "WiBuseter is an opesource website enumerator made with python3",
             image: "images/man.png",
             url: "https://github.com",
+            sourceUrl: "https://tg21.github.io",
           ),
         ]
         ),
@@ -223,14 +225,14 @@ class SkillsData {
             duration: "2020 - 2021",
             aboutProject: "An android game based on Chrome's game made with flutter from scratch without using any game engines like flame or unity",
             image: "images/man.png",
-            url: "https://github.com",
+            //url: "https://github.com",
           ),
           const ProjectsData(
             project: "This Website",
             duration: "2021 - 2021",
             aboutProject: "WiBuseter is an opesource website enumerator made with python3",
             image: "images/man.png",
-            url: "https://github.com",
+            sourceUrl: "https://github.com",
           ),
         ]
         ),
@@ -272,12 +274,16 @@ class ProjectsData {
   final String aboutProject;
   final String duration;
   final String? url;
+  final String? sourceUrl;
   final String? image;
 
   const ProjectsData(
-      {required this.project,
+      {
+      required this.project,
       required this.aboutProject,
       required this.duration,
       this.url,
-      this.image});
+      this.image,
+      this.sourceUrl
+      });
 }
