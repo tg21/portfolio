@@ -63,12 +63,13 @@ class ResponsiveGridRow extends StatelessWidget {
   final double? height;
   final double? width;
   final BoxDecoration? decoration;
+  final bool shrinkChildren;
 
   ResponsiveGridRow(
       {required this.children,
       this.crossAxisAlignment = CrossAxisAlignment.start,
       this.mainAxisAlignment = MainAxisAlignment.start,
-      this.rowSegments = 12,this.height,this.width,this.decoration});
+      this.rowSegments = 12,this.height,this.width,this.decoration,this.shrinkChildren = false});
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +82,11 @@ class ResponsiveGridRow extends StatelessWidget {
       var colWidth = col.currentConfig(context) ?? 1;
       //
       if (accumulatedWidth + colWidth > rowSegments) {
-        // if (accumulatedWidth < rowSegments) {
-        //   cols.add(Spacer(
-        //     flex: rowSegments - accumulatedWidth,
-        //   ));
-        // }
+        if (accumulatedWidth < rowSegments && this.shrinkChildren) {
+          cols.add(Spacer(
+            flex: rowSegments - accumulatedWidth,
+          ));
+        }
         rows.add(Row(
           children: cols,
         ));
@@ -99,11 +100,11 @@ class ResponsiveGridRow extends StatelessWidget {
     });
 
     if (accumulatedWidth >= 0) {
-      // if (accumulatedWidth < rowSegments) {
-      //   cols.add(Spacer(
-      //     flex: rowSegments - accumulatedWidth,
-      //   ));
-      // }
+      if (accumulatedWidth < rowSegments && this.shrinkChildren){
+        cols.add(Spacer(
+          flex: rowSegments - accumulatedWidth,
+        ));
+      }
       rows.add(Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: this.mainAxisAlignment,
@@ -136,7 +137,7 @@ class ResponsiveGridCol extends Container {
     int? lg,
     int? xl,
     required this.child,
-  }) {
+  })  : super() {
     _config[_GridTier.xs.index] = xs;
     _config[_GridTier.sm.index] = sm ?? _config[_GridTier.xs.index];
     _config[_GridTier.md.index] = md ?? _config[_GridTier.sm.index];
