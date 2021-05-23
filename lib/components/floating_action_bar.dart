@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/screens_data.dart';
 
+import '../data/screens_data.dart';
+
+// import '../data/screens_data.dart';
+
 class FloatingActionBar extends StatefulWidget {
   final Size size;
-  final double preciseCurrentScreenIndex;
-  final int roundedCurrentScreenIndex;
-  final double yOffset;
-  final Function moveListToIndex;
+  final List<GlobalKey> itemKeys;
+  final ScrollController actionBarController;
+  final List<ScreenData> listItems;
 
-  const FloatingActionBar(
-      {Key? key,
-      required this.size,
-      required this.preciseCurrentScreenIndex,
-      required this.roundedCurrentScreenIndex,
-      required this.yOffset,
-      required this.moveListToIndex});
+  // final double preciseCurrentScreenIndex;
+  // final int roundedCurrentScreenIndex;
+  // final double yOffset;
+  // final Function moveListToIndex;
+
+  const FloatingActionBar({
+    Key? key,
+    required this.size,
+    required this.itemKeys,
+    required this.actionBarController,
+    required this.listItems,
+
+    // required this.preciseCurrentScreenIndex,
+    // required this.roundedCurrentScreenIndex,
+    // required this.yOffset,
+    // required this.moveListToIndex,
+  });
 
   @override
   _FloatingActionBarState createState() => _FloatingActionBarState();
@@ -25,20 +38,160 @@ class _FloatingActionBarState extends State<FloatingActionBar>
   late AnimationController _fabAnimationController;
   late CurvedAnimation _myAnimation;
 
+
+  List<double> itemSizeCache = [];
+
+  @override
+  void initState() {
+    super.initState();
+      for(var i=0 ; i < screensData.length; i++) {
+    itemSizeCache.add(0);
+  }
+    _fabAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+    );
+    _myAnimation = CurvedAnimation(
+        curve: Curves.fastOutSlowIn, parent: _fabAnimationController);
+    _fabAnimationController.forward();
+
+    widget.actionBarController.addListener(_update);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _fabAnimationController.dispose();
+    widget.actionBarController.removeListener(_update);
+  }
+
+  void _update() {
+    //actionBarController.onScroll?.call(actionBarController.position);
+    this.setState(() {
+      scrollPosition = widget.actionBarController.position.pixels + 0;
+      maxScroll = widget.actionBarController.position.maxScrollExtent + 0;
+    });
+    setCurrentScreenIndex();
+  }
+
+  double scrollPosition = 1;
+  double maxScroll = 1;
+
+  double getYAlignmentBasedOnScroll() {
+    if (!widget.actionBarController.hasClients) {
+      return -1.025;
+    }
+    try{
+      setState(() {
+      maxScroll = (widget.actionBarController.position.maxScrollExtent) + 0;
+      scrollPosition = (widget.actionBarController.position.pixels) + 0;
+    });
+    }catch(e){
+      print(e);
+      return -1.025;
+    }
+    
+
+    double yOffset;
+    double halfMaxScroll = maxScroll / 2;
+    //print('$maxScroll : $scrollPosition : $halfMaxScroll ---> ');
+    if (scrollPosition < halfMaxScroll) {
+      //print("lesser");
+      yOffset = scrollPosition / halfMaxScroll - 1.02;
+    } else {
+      //print("greater");
+      scrollPosition = maxScroll - scrollPosition;
+      yOffset = 1.04 - scrollPosition / halfMaxScroll;
+    }
+    if (!yOffset.isFinite) {
+      yOffset = -1.025;
+    }
+    //print('$maxScroll : $scrollPosition : $halfMaxScroll ---> $yOffset');
+    return yOffset;
+  }
+
+  
+
+  Size size = Size(0, 0);
+  int actionBarItemsCount = screensData.length;
+  void moveListToIndex(int index) {
+    if (maxScroll == 1) {
+      setState(() {
+        maxScroll = widget.actionBarController.position.maxScrollExtent + 0;
+      });
+    }
+    double offset = 0;
+    //print(index);
+    if (index > 0) {
+      for (var i = 0; i < index; i++) {
+        var height = widget.itemKeys[i].currentContext?.findRenderObject()?.paintBounds.size.height;
+        // RenderObject? ro = ctx?.findRenderObject()?.paintBounds.size.height;;
+        // var height = ro?.paintBounds.size.height;
+        if(height != null){
+          itemSizeCache[index] = height;
+        }
+        //print(widget.itemKeys[i]);
+        print('height : $i ---> $height');
+        offset +=  height?? itemSizeCache[index];
+      }
+      //offset = maxScroll - size.height * (actionBarItemsCount - index - 1);
+    }
+    //print(maxScroll);
+    print('Counts: $actionBarItemsCount : $index ---> $offset');
+    widget.actionBarController.animateTo(offset,
+        duration: Duration(milliseconds: 1000), curve: Curves.ease);
+  }
+
+  int roundedCurrentScreenIndex = 0;
+  double preciseCurrentScreenIndex = 0;
+  void setCurrentScreenIndex() {
+    if (maxScroll == 1) {
+      setState(() {
+        maxScroll = widget.actionBarController.position.maxScrollExtent + 0;
+        scrollPosition = widget.actionBarController.position.pixels + 0;
+      });
+    }
+
+
+    double index = 0;
+    var tempScrPos = scrollPosition + 0;
+    for (var i = 0; i < widget.itemKeys.length; i++) {
+        var height = widget.itemKeys[i].currentContext?.findRenderObject()?.paintBounds.size.height;
+        // RenderObject? ro = ctx?.findRenderObject()?.paintBounds.size.height;;
+        // var height = ro?.paintBounds.size.height;
+        if(height != null){
+          itemSizeCache[i] = height;
+        }else{
+          height = itemSizeCache[i];
+        }
+        if(tempScrPos < height){
+          break;
+        }
+        tempScrPos -= height;
+        index += 1;
+      }
+
+    //offset = maxScroll - size.height * (actionBarItemsCount - index - 1);
+    
+    // double index = -1 *
+    //     (((maxScroll - scrollPosition) / size.height) -
+    //         actionBarItemsCount +
+    //         1);
+    setState(() {
+      preciseCurrentScreenIndex = index;
+      roundedCurrentScreenIndex = index.round();
+    });
+    //print("$index.  :: ${index.round()}");
+  }
+
   void showOrHideActionBar() {
     setState(() {
-      if(_fabAnimationController.isCompleted){
-      _fabAnimationController.reverse();
-    }else{
-      _fabAnimationController.forward();
-    }
+      if (_fabAnimationController.isCompleted) {
+        _fabAnimationController.reverse();
+      } else {
+        _fabAnimationController.forward();
+      }
     });
-    
-    // _animationCompleted = !_animationCompleted;
-    // _animationCompleted
-    //     ? _fabAnimationController.forward()
-    //     : _fabAnimationController.reverse();
-    // actionBarVerticalAlignment = -2;
   }
 
   //OnHover Effect
@@ -58,36 +211,17 @@ class _FloatingActionBarState extends State<FloatingActionBar>
 
   Color getActionBarIconColorOnHover(index) {
     bool isHovered = hoveredIndex == index;
-    if (((widget.preciseCurrentScreenIndex + 0.3) >= index &&
-        widget.preciseCurrentScreenIndex <= index + 0.3)) {
+    if (((preciseCurrentScreenIndex + 0.3) >= index &&
+        preciseCurrentScreenIndex <= index + 0.3)) {
       return isHovered ? Colors.black : Colors.white;
     } else {
       return isHovered ? screensData[index].primaryColor : Colors.black;
     }
   }
 
-
-
-  @override
-  void initState() {
-    super.initState();
-    _fabAnimationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 200),
-    );
-    _myAnimation = CurvedAnimation(
-        curve: Curves.fastOutSlowIn, parent: _fabAnimationController);
-    _fabAnimationController.forward();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _fabAnimationController.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
     return Container(
       alignment: Alignment.centerRight,
       child: Container(
@@ -124,12 +258,15 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                       children: [
                         AnimatedContainer(
                           duration: Duration(milliseconds: 20),
-                          alignment: Alignment(0, widget.yOffset),
+                          alignment: Alignment(0, getYAlignmentBasedOnScroll()),
                           child: Container(
                             width: 50, //size.width *0.1,
                             height: 50,
                             decoration: BoxDecoration(
-                              color: screensData[widget.roundedCurrentScreenIndex < 0 ? 0 : widget.roundedCurrentScreenIndex].primaryColor, // Colors.redAccent,
+                              color: screensData[roundedCurrentScreenIndex < 0
+                                      ? 0
+                                      : roundedCurrentScreenIndex]
+                                  .primaryColor, // Colors.redAccent,
                               borderRadius: BorderRadius.circular(100),
                             ),
                           ),
@@ -142,16 +279,15 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                             children: [
                               ...screensData.map(
                                 (item) => InkWell(
-                                  onTap: () => widget
-                                      .moveListToIndex(screensData.indexOf(item)),
+                                  onTap: () => moveListToIndex(
+                                      screensData.indexOf(item)),
                                   onHover: (hover) => actionBarItemHovered(
                                       hover, screensData.indexOf(item)),
                                   child: Tooltip(
                                     child: Icon(
                                       item.icon,
                                       color: getActionBarIconColorOnHover(
-                                          screensData.indexOf(
-                                              item)), // hoveredIndex == screensData.indexOf(item) ? item['primaryColor'] :  Colors.black,
+                                          screensData.indexOf(item)),
                                     ),
                                     message: item.tooltip,
                                   ),
@@ -164,54 +300,25 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                     )),
               ),
             ),
-                Container(
-                  width: 70,
-                  alignment: Alignment.center,
-                  child: RawMaterialButton(
-                    onPressed: showOrHideActionBar,
-                    // elevation: elevation,
-                    // focusElevation: focusElevation,
-                    hoverElevation: 10.0,
-                    // highlightElevation: highlightElevation,
-                    // disabledElevation: disabledElevation,
-                    constraints: const BoxConstraints(minHeight:50,minWidth:50),
-                    // materialTapTargetSize: materialTapTargetSize,
-                    fillColor: screensData[widget.roundedCurrentScreenIndex < 0 ? 0 : widget.roundedCurrentScreenIndex].primaryColor,
-                    // focusColor: focusColor,
-                    //hoverColor: Colors.black,
-                    // splashColor: splashColor,
-                    // textStyle: textStyle,
-                    shape: CircleBorder(),
-                    // clipBehavior: clipBehavior,
-                    // focusNode: focusNode,
-                    // autofocus: autofocus,
-                    
-                    child: AnimatedIcon(
-                    icon: AnimatedIcons.menu_close,
-                    color: Colors.white,
-                    progress: _myAnimation,
-                  ),
-                  ),
+            Container(
+              width: 70,
+              alignment: Alignment.center,
+              child: RawMaterialButton(
+                onPressed: showOrHideActionBar,
+                hoverElevation: 10.0,
+                constraints: const BoxConstraints(minHeight: 50, minWidth: 50),
+                fillColor: screensData[roundedCurrentScreenIndex < 0
+                        ? 0
+                        : roundedCurrentScreenIndex]
+                    .primaryColor,
+                shape: CircleBorder(),
+                child: AnimatedIcon(
+                  icon: AnimatedIcons.menu_close,
+                  color: Colors.white,
+                  progress: _myAnimation,
                 ),
-            // Container(
-            //   alignment: Alignment.centerRight,
-            //   width: 70,
-            //   child: GestureDetector(
-            //       child: Container(
-            //     decoration: BoxDecoration(
-            //       color: screensData[widget.roundedCurrentScreenIndex]
-            //           ['primaryColor'],
-            //       borderRadius: BorderRadius.circular(30),
-            //     ),
-            //     child: IconButton(
-            //       icon: AnimatedIcon(
-            //         icon: AnimatedIcons.menu_close,
-            //         progress: _myAnimation,
-            //       ),
-            //       onPressed: showOrHideActionBar,
-            //     ),
-            //   )),
-            // )
+              ),
+            ),
           ],
         ),
       ),
