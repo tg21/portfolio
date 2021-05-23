@@ -23,13 +23,13 @@ class ScreenData{
 
 //mainly data for actionbar
 var screensData = [
-  new ScreenData(
+  ScreenData(
     icon:Icons.house_outlined,
     tooltip: "Home",
     widget: HomeScreen(),
     primaryColor: Color(0xFF3D173F),
      ),
-  new ScreenData(
+  ScreenData(
     icon:Icons.details_outlined,
     tooltip: "About",
     widget: AboutScreen(),
@@ -37,7 +37,7 @@ var screensData = [
      ),
   
      
-  new ScreenData(
+  ScreenData(
     icon:Icons.developer_mode_outlined,
     tooltip: "Skills",
     widget: SkillScreen(),
