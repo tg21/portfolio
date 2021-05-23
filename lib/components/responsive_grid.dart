@@ -64,12 +64,14 @@ class ResponsiveGridRow extends StatelessWidget {
   final double? width;
   final BoxDecoration? decoration;
   final bool shrinkChildren;
+  final BoxConstraints? constraints;
+  final bool returnExpanded;
 
   ResponsiveGridRow(
       {required this.children,
       this.crossAxisAlignment = CrossAxisAlignment.start,
       this.mainAxisAlignment = MainAxisAlignment.start,
-      this.rowSegments = 12,this.height,this.width,this.decoration,this.shrinkChildren = false});
+      this.rowSegments = 12,this.height,this.width,this.decoration,this.shrinkChildren = false,this.constraints,this.returnExpanded = false});
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +119,7 @@ class ResponsiveGridRow extends StatelessWidget {
       height: this.height,
       width: this.width,
       decoration: this.decoration,
+      constraints: this.constraints,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: rows,
@@ -129,6 +132,8 @@ class ResponsiveGridRow extends StatelessWidget {
 class ResponsiveGridCol extends Container {
   final _config = <int?>[]..length = 5;
   final Widget child;
+  final Alignment? alignment;
+  final returnExpanded;
   
   ResponsiveGridCol({
     int xs = 12,
@@ -137,6 +142,8 @@ class ResponsiveGridCol extends Container {
     int? lg,
     int? xl,
     required this.child,
+    this.alignment,
+    this.returnExpanded = false,
   })  : super() {
     _config[_GridTier.xs.index] = xs;
     _config[_GridTier.sm.index] = sm ?? _config[_GridTier.xs.index];
@@ -153,7 +160,9 @@ class ResponsiveGridCol extends Container {
   Widget build(BuildContext context) {
     return Expanded(
       flex: currentConfig(context) ?? 1,
-      child: Container(child: child),
+      child: this.returnExpanded ? child : Container(
+        alignment: this.alignment,
+        child: child),
     );
   }
 }
