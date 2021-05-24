@@ -1,9 +1,7 @@
-// /import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/components/floating_action_bar.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-//import 'components/stacked_list_view.dart';
 import 'package:portfolio/data/primary.dart';
 import 'package:portfolio/data/screens_data.dart';
 import 'data/screens_data.dart';
@@ -32,10 +30,6 @@ class MyApp extends StatelessWidget {
       
       debugShowCheckedModeBanner: false,
       title: data['AppTitle'],
-      // theme: ThemeData(
-      //   primarySwatch: Colors.blue,
-      //   visualDensity: VisualDensity.adaptivePlatformDensity,
-      // ),
       home: MyHomePage(),
     );
   }
@@ -70,26 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
-    //final double itemHeight = size.height; // 400;
     return Scaffold(
       backgroundColor: Colors.white,
-      // body: OpacityStackedList(size: size, controller: controller, itemsData: itemsData),
       body: Stack(children: [
         Container(
-          // child: ListView(
-          //   physics: ClampingScrollPhysics(),
-          //   controller: actionBarController,
-          //   children: [...screensData.map((e) => 
-          //  Container(
-          //       // constraints: BoxConstraints(
-          //       //   minHeight: size.height,
-          //       // ),
-          //       //height: size.height,
-          //       //width: size.width,
-          //       alignment: Alignment.topCenter,
-          //       child: e.widget)
-          //   ),],
-          // ),
           child: ListView.builder(
             itemCount: screensData.length,
             physics: ClampingScrollPhysics(),
@@ -103,61 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           ),
         ),
-
-
-        // if(false)
-        // StackedListView(
-        //   //padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-        //   itemCount: data.length,
-        //   itemExtent: size.height,
-        //   heightFactor: 1.0,
-        //   controller: actionBarController,
-        //   onScroll: (scrPos) => {
-        //     this.setState(() {
-        //       scrollPosition = scrPos.pixels + 0;
-        //       maxScroll = scrPos.maxScrollExtent + 0;
-        //     }),
-        //     setCurrentScreenIndex(),
-        //   },
-        //   builder: (_, index) {
-        //     return screensData[index].widget.runtimeType == String
-        //         ? Container(
-        //             width: size.height,
-        //             decoration: BoxDecoration(
-        //               //borderRadius: BorderRadius.all(Radius.circular(20.0)),
-        //               image: DecorationImage(image: AssetImage(screensData[index].widget),fit: BoxFit.cover),
-        //               color: Colors.white,
-        //               boxShadow: [
-        //                 BoxShadow(
-        //                     color: Colors.black.withAlpha(100),
-        //                     blurRadius: 10),
-        //               ],
-        //             ),
-        //             child: Column(
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               children: [
-        //                 Text(
-        //                   screensData[index].widget,
-        //                   style: TextStyle(
-        //                       fontSize: 24, fontWeight: FontWeight.bold),
-        //                 ),
-        //               ],
-        //             ),
-        //             //padding: EdgeInsets.all(20),
-        //           )
-        //         : screensData[index].widget;
-        //   },
-        // ),
         FloatingActionBar(
             size: size,
             itemKeys: widgetKeys,
             actionBarController: actionBarController,
             listItems: screensData,
-            // listItems: screensData,
-            // preciseCurrentScreenIndex: preciseCurrentScreenIndex,
-            // roundedCurrentScreenIndex: roundedCurrentScreenIndex,
-            // yOffset: getYAlignmentBasedOnScroll(),
-            // moveListToIndex: moveListToIndex,
             ),
       ]),
     );
