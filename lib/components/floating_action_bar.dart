@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/screens_data.dart';
 
@@ -77,37 +79,99 @@ class _FloatingActionBarState extends State<FloatingActionBar>
   double scrollPosition = 1;
   double maxScroll = 1;
 
+  double alignmentWindowSize = 1 / (screensData.length/2).floor();
+
+
+  double _getWidgetHeight(int index){
+     var height = widget.itemKeys[index].currentContext?.findRenderObject()?.paintBounds.size.height;
+        if(height != null){
+          itemSizeCache[index] = height;
+        }else{
+          height = itemSizeCache[index];
+        }
+    return height;
+  }
+
   double getYAlignmentBasedOnScroll() {
-    if (!widget.actionBarController.hasClients) {
-      return -1.025;
+    // if (!widget.actionBarController.hasClients) {
+    //   return -1.025;
+    // }
+    // try{
+    //   setState(() {
+    //   maxScroll = (widget.actionBarController.position.maxScrollExtent) + 0;
+    //   scrollPosition = (widget.actionBarController.position.pixels) + 0;
+    // });
+    // }catch(e){
+    //   print(e);
+    //   return -1.025;
+    // }
+    
+    //var tempScrPos = scrollPosition + 0;
+
+    //double currentExtraScrollFromIndex =  prec;
+    // for (var i = 0; i < widget.itemKeys.length; i++) {
+    //     var height = _getWidgetHeight(i);
+
+        
+    //     if(tempScrPos < height){
+    //       currentExtraScrollFromIndex = tempScrPos;
+    //       //index += (tempScrPos / height);
+    //       break;
+    //     }
+    //     tempScrPos -= height;
+    //     //index += 1;
+    //   }
+
+
+
+     double yOffset;
+    // lower half Condition
+    //yOffset = (roundedCurrentScreenIndex - screensData.length/2).abs()
+    if(preciseCurrentScreenIndex < (screensData.length/2).floor()){
+      yOffset = -1;
+      yOffset += roundedCurrentScreenIndex * alignmentWindowSize;
+      yOffset += (preciseCurrentScreenIndex - roundedCurrentScreenIndex) * alignmentWindowSize;
+      yOffset = max(-1.025, yOffset);
+
     }
-    try{
-      setState(() {
-      maxScroll = (widget.actionBarController.position.maxScrollExtent) + 0;
-      scrollPosition = (widget.actionBarController.position.pixels) + 0;
-    });
-    }catch(e){
-      print(e);
-      return -1.025;
+    else if(preciseCurrentScreenIndex == (screensData.length/2).floor()){
+      yOffset = 0;
+    }
+    else{
+      yOffset = 0;
+      yOffset += (roundedCurrentScreenIndex - (screensData.length/2).floor()) * alignmentWindowSize;
+      yOffset += (preciseCurrentScreenIndex - roundedCurrentScreenIndex) * alignmentWindowSize;
+      yOffset = min(1.025, yOffset);
     }
     
+    
+    // if(preciseCurrentScreenIndex >= (screensData.length/2).floor()){
+    //   yOffset = 0;
+    //   yOffset += (screensData.length - roundedCurrentScreenIndex) * alignmentWindowSize;
+    // }else{
+    //   yOffset = -1;
+    //   yOffset += (roundedCurrentScreenIndex * alignmentWindowSize);
+    // }
+    // yOffset += ((currentExtraScrollFromIndex)/_getWidgetHeight(roundedCurrentScreenIndex) * alignmentWindowSize);
 
-    double yOffset;
-    double halfMaxScroll = maxScroll / 2;
-    //print('$maxScroll : $scrollPosition : $halfMaxScroll ---> ');
-    if (scrollPosition < halfMaxScroll) {
-      //print("lesser");
-      yOffset = scrollPosition / halfMaxScroll - 1.02;
-    } else {
-      //print("greater");
-      scrollPosition = maxScroll - scrollPosition;
-      yOffset = 1.04 - scrollPosition / halfMaxScroll;
-    }
-    if (!yOffset.isFinite) {
-      yOffset = -1.025;
-    }
-    //print('$maxScroll : $scrollPosition : $halfMaxScroll ---> $yOffset');
+
     return yOffset;
+   
+    // double halfMaxScroll = maxScroll / 2;
+    // //print('$maxScroll : $scrollPosition : $halfMaxScroll ---> ');
+    // if (scrollPosition < halfMaxScroll) {
+    //   //print("lesser");
+    //   yOffset = scrollPosition / halfMaxScroll - 1.02;
+    // } else {
+    //   //print("greater");
+    //   scrollPosition = maxScroll - scrollPosition;
+    //   yOffset = 1.04 - scrollPosition / halfMaxScroll;
+    // }
+    // if (!yOffset.isFinite) {
+    //   yOffset = -1.025;
+    // }
+    // //print('$maxScroll : $scrollPosition : $halfMaxScroll ---> $yOffset');
+    // return yOffset;
   }
 
   
@@ -124,20 +188,15 @@ class _FloatingActionBarState extends State<FloatingActionBar>
     //print(index);
     if (index > 0) {
       for (var i = 0; i < index; i++) {
-        var height = widget.itemKeys[i].currentContext?.findRenderObject()?.paintBounds.size.height;
-        // RenderObject? ro = ctx?.findRenderObject()?.paintBounds.size.height;;
-        // var height = ro?.paintBounds.size.height;
-        if(height != null){
-          itemSizeCache[index] = height;
-        }
+        var height = _getWidgetHeight(i);
         //print(widget.itemKeys[i]);
-        print('height : $i ---> $height');
-        offset +=  height?? itemSizeCache[index];
+        //print('height : $i ---> $height');
+        offset +=  height;
       }
       //offset = maxScroll - size.height * (actionBarItemsCount - index - 1);
     }
     //print(maxScroll);
-    print('Counts: $actionBarItemsCount : $index ---> $offset');
+    //print('Counts: $actionBarItemsCount : $index ---> $offset');
     widget.actionBarController.animateTo(offset,
         duration: Duration(milliseconds: 1000), curve: Curves.ease);
   }
@@ -156,15 +215,11 @@ class _FloatingActionBarState extends State<FloatingActionBar>
     double index = 0;
     var tempScrPos = scrollPosition + 0;
     for (var i = 0; i < widget.itemKeys.length; i++) {
-        var height = widget.itemKeys[i].currentContext?.findRenderObject()?.paintBounds.size.height;
-        // RenderObject? ro = ctx?.findRenderObject()?.paintBounds.size.height;;
-        // var height = ro?.paintBounds.size.height;
-        if(height != null){
-          itemSizeCache[i] = height;
-        }else{
-          height = itemSizeCache[i];
-        }
+        var height = _getWidgetHeight(i);
+
+        
         if(tempScrPos < height){
+          index += (tempScrPos / height);
           break;
         }
         tempScrPos -= height;
