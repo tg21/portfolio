@@ -239,51 +239,6 @@ class SkillsData {
   ];
 }
 
-class SkillsFormat {
-  final String skillName;
-  final String expirenceTimeWithSkill;
-  final String details;
-  final List<CertificationData> certifications;
-  final List<ProjectsData> projects;
-
-  const SkillsFormat(
-      {required this.skillName,
-      required this.expirenceTimeWithSkill,
-      required this.details,
-      required this.certifications,
-      required this.projects});
-}
-
-class CertificationData {
-  final String certification;
-  final String? image;
-  final String validaity;
-  final String? url;
-  final String? infoCertificate;
-
-  const CertificationData(
-      {required this.certification,
-      this.image,
-      required this.validaity,
-      this.url,
-      this.infoCertificate});
-}
-
-class ProjectsData {
-  final String project;
-  final String aboutProject;
-  final String duration;
-  final String? url;
-  final String? sourceUrl;
-  final String? image;
-
-  const ProjectsData(
-      {
-      required this.project,
-      required this.aboutProject,
-      required this.duration,
-      this.url,
-      this.image,
-      this.sourceUrl
-      });
+class ContactData{
+  static const bg_image = "images/6contact.webp";
 }

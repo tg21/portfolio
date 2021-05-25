@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/screens/contact.dart';
 
 import 'package:portfolio/screens/home.dart';
 import 'package:portfolio/screens/about.dart';
@@ -42,6 +43,12 @@ var screensData = [
     tooltip: "Skills",
     widget: SkillScreen(),
     primaryColor: Colors.pink,
+     ),
+  ScreenData(
+    icon:Icons.contact_mail_outlined,
+    tooltip: "contact",
+    widget: ContactScreen(),
+    primaryColor: Colors.blueAccent,
      ),
      
   
