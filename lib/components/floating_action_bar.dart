@@ -79,7 +79,8 @@ class _FloatingActionBarState extends State<FloatingActionBar>
   double scrollPosition = 1;
   double maxScroll = 1;
 
-  double alignmentWindowSize = 1 / (screensData.length/2).floor();
+  // double alignmentWindowSize = 1 / (screensData.length/2).floor();
+  double alignmentWindowSize = 2 / (screensData.length-1);
 
 
   double _getWidgetHeight(int index){
@@ -93,40 +94,15 @@ class _FloatingActionBarState extends State<FloatingActionBar>
   }
 
   double getYAlignmentBasedOnScroll() {
-    // if (!widget.actionBarController.hasClients) {
-    //   return -1.025;
-    // }
-    // try{
-    //   setState(() {
-    //   maxScroll = (widget.actionBarController.position.maxScrollExtent) + 0;
-    //   scrollPosition = (widget.actionBarController.position.pixels) + 0;
-    // });
-    // }catch(e){
-    //   print(e);
-    //   return -1.025;
-    // }
     
-    //var tempScrPos = scrollPosition + 0;
-
-    //double currentExtraScrollFromIndex =  prec;
-    // for (var i = 0; i < widget.itemKeys.length; i++) {
-    //     var height = _getWidgetHeight(i);
-
-        
-    //     if(tempScrPos < height){
-    //       currentExtraScrollFromIndex = tempScrPos;
-    //       //index += (tempScrPos / height);
-    //       break;
-    //     }
-    //     tempScrPos -= height;
-    //     //index += 1;
-    //   }
-
-
-
      double yOffset;
-    // lower half Condition
-    //yOffset = (roundedCurrentScreenIndex - screensData.length/2).abs()
+     yOffset = -1;
+      yOffset += (roundedCurrentScreenIndex * alignmentWindowSize);
+      yOffset += ((preciseCurrentScreenIndex - roundedCurrentScreenIndex) * alignmentWindowSize);
+      if(yOffset > 2){
+        yOffset -= 1;
+      }
+    return yOffset;
     if(preciseCurrentScreenIndex < (screensData.length/2).floor()){
       yOffset = -1;
       yOffset += roundedCurrentScreenIndex * alignmentWindowSize;
@@ -145,33 +121,8 @@ class _FloatingActionBarState extends State<FloatingActionBar>
     }
     
     
-    // if(preciseCurrentScreenIndex >= (screensData.length/2).floor()){
-    //   yOffset = 0;
-    //   yOffset += (screensData.length - roundedCurrentScreenIndex) * alignmentWindowSize;
-    // }else{
-    //   yOffset = -1;
-    //   yOffset += (roundedCurrentScreenIndex * alignmentWindowSize);
-    // }
-    // yOffset += ((currentExtraScrollFromIndex)/_getWidgetHeight(roundedCurrentScreenIndex) * alignmentWindowSize);
-
-
     return yOffset;
    
-    // double halfMaxScroll = maxScroll / 2;
-    // //print('$maxScroll : $scrollPosition : $halfMaxScroll ---> ');
-    // if (scrollPosition < halfMaxScroll) {
-    //   //print("lesser");
-    //   yOffset = scrollPosition / halfMaxScroll - 1.02;
-    // } else {
-    //   //print("greater");
-    //   scrollPosition = maxScroll - scrollPosition;
-    //   yOffset = 1.04 - scrollPosition / halfMaxScroll;
-    // }
-    // if (!yOffset.isFinite) {
-    //   yOffset = -1.025;
-    // }
-    // //print('$maxScroll : $scrollPosition : $halfMaxScroll ---> $yOffset');
-    // return yOffset;
   }
 
   
