@@ -102,26 +102,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
       if(yOffset > 2){
         yOffset -= 1;
       }
-    return yOffset;
-    if(preciseCurrentScreenIndex < (screensData.length/2).floor()){
-      yOffset = -1;
-      yOffset += roundedCurrentScreenIndex * alignmentWindowSize;
-      yOffset += (preciseCurrentScreenIndex - roundedCurrentScreenIndex) * alignmentWindowSize;
-      yOffset = max(-1.025, yOffset);
-
-    }
-    else if(preciseCurrentScreenIndex == (screensData.length/2).floor()){
-      yOffset = 0;
-    }
-    else{
-      yOffset = 0;
-      yOffset += (roundedCurrentScreenIndex - (screensData.length/2).floor()) * alignmentWindowSize;
-      yOffset += (preciseCurrentScreenIndex - roundedCurrentScreenIndex) * alignmentWindowSize;
-      yOffset = min(1.025, yOffset);
-    }
-    
-    
-    return yOffset;
+    return max(1.025,yOffset);
    
   }
 
