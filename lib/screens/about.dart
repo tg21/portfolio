@@ -18,7 +18,7 @@ class AboutScreen extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(AboutData.bg_image), fit: BoxFit.cover),
+              image: NetworkImage(AboutData.bg_image), fit: BoxFit.cover),
           // gradient: LinearGradient(colors: [
           //   Colors.black,
           //   Colors.black54

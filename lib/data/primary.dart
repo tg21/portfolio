@@ -264,12 +264,12 @@ class ContactData{
       bgColor: Colors.black87,
     ),
     const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
+      contactName : "Hackerrank",
+      icon: FontAwesomeIcons.hackerrank,
       url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
+      iconColor: Colors.white,
       textColor: Colors.white70,
-      bgColor: Colors.black87,
+      bgColor: Colors.green,
     ),
     const ContactClass(
       contactName : "StackOverflow",
