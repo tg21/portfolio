@@ -24,7 +24,7 @@ class ScreenData{
 
 //mainly data for actionbar
 var screensData = [
-  ScreenData(
+ ScreenData(
     icon:Icons.house_outlined,
     tooltip: "Home",
     widget: HomeScreen(),
@@ -51,7 +51,7 @@ var screensData = [
     primaryColor: Colors.blueAccent,
      ),
      
-  
+   
      
   // new ScreenData(
   //   icon:Icons.house_outlined,

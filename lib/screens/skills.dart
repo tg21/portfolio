@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:portfolio/components/responsive_grid.dart';
 import 'package:portfolio/data/primary.dart';
+import 'package:portfolio/data/types.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SkillScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _SkillScreenState extends State<SkillScreen> {
       ),
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage(SkillsData.bg_image), fit: BoxFit.cover),
+            image: NetworkImage(SkillsData.bg_image), fit: BoxFit.cover),
       ),
       child: DefaultTextStyle(
         style: TextStyle(color: SkillsData.fontColor),

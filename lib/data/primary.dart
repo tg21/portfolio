@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/data/types.dart';
 
 const data = <dynamic, dynamic>{
@@ -241,4 +242,133 @@ class SkillsData {
 
 class ContactData{
   static const bg_image = "images/6contact.webp";
+  static const List<ContactClass> contacts = [
+    const ContactClass(
+      contactName : "Gmail",
+      icon: FontAwesomeIcons.envelope,
+      url: "mailto:gautamtushar21@gmail.com",
+      iconColor: Colors.redAccent
+    ),
+    const ContactClass(
+      contactName : "Twitter",
+      icon: FontAwesomeIcons.twitter,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.blueAccent,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+    const ContactClass(
+      contactName : "StackOverflow",
+      icon: FontAwesomeIcons.stackOverflow,
+      url: "https://twitter.com/CoderWhoLived",
+      iconColor: Colors.deepOrange,
+      textColor: Colors.white70,
+      bgColor: Colors.black87,
+    ),
+  ];
+}
+
+class ContactClass{
+  final String contactName;
+  final IconData icon;
+  final String url;
+  final Color iconColor;
+  final Color textColor;
+  final Color bgColor;
+
+  const ContactClass({required this.contactName, required this.icon, required this.url, this.iconColor = Colors.black, this.textColor = Colors.black,this.bgColor=Colors.white70});
 }
