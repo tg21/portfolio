@@ -40,15 +40,14 @@ class _FloatingActionBarState extends State<FloatingActionBar>
   late AnimationController _fabAnimationController;
   late CurvedAnimation _myAnimation;
 
-
   List<double> itemSizeCache = [];
 
   @override
   void initState() {
     super.initState();
-      for(var i=0 ; i < screensData.length; i++) {
-    itemSizeCache.add(0);
-  }
+    for (var i = 0; i < screensData.length; i++) {
+      itemSizeCache.add(0);
+    }
     _fabAnimationController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 200),
@@ -80,33 +79,33 @@ class _FloatingActionBarState extends State<FloatingActionBar>
   double maxScroll = 1;
 
   // double alignmentWindowSize = 1 / (screensData.length/2).floor();
-  double alignmentWindowSize = 2 / (screensData.length-1);
+  double alignmentWindowSize = 2 / (screensData.length - 1);
 
-
-  double _getWidgetHeight(int index){
-     var height = widget.itemKeys[index].currentContext?.findRenderObject()?.paintBounds.size.height;
-        if(height != null){
-          itemSizeCache[index] = height;
-        }else{
-          height = itemSizeCache[index];
-        }
+  double _getWidgetHeight(int index) {
+    var height = widget.itemKeys[index].currentContext
+        ?.findRenderObject()
+        ?.paintBounds
+        .size
+        .height;
+    if (height != null) {
+      itemSizeCache[index] = height;
+    } else {
+      height = itemSizeCache[index];
+    }
     return height;
   }
 
   double getYAlignmentBasedOnScroll() {
-    
-     double yOffset;
-     yOffset = -1;
-      yOffset += (roundedCurrentScreenIndex * alignmentWindowSize);
-      yOffset += ((preciseCurrentScreenIndex - roundedCurrentScreenIndex) * alignmentWindowSize);
-      if(yOffset > 2){
-        yOffset -= 1;
-      }
-    return max(1.025,yOffset);
-   
+    double yOffset;
+    yOffset = -1;
+    yOffset += (roundedCurrentScreenIndex * alignmentWindowSize);
+    yOffset += ((preciseCurrentScreenIndex - roundedCurrentScreenIndex) *
+        alignmentWindowSize);
+    if (yOffset > 2) {
+      yOffset -= 1;
+    }
+    return min(1.05, yOffset);
   }
-
-  
 
   Size size = Size(0, 0);
   int actionBarItemsCount = screensData.length;
@@ -123,7 +122,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
         var height = _getWidgetHeight(i);
         //print(widget.itemKeys[i]);
         //print('height : $i ---> $height');
-        offset +=  height;
+        offset += height;
       }
       //offset = maxScroll - size.height * (actionBarItemsCount - index - 1);
     }
@@ -143,23 +142,21 @@ class _FloatingActionBarState extends State<FloatingActionBar>
       });
     }
 
-
     double index = 0;
     var tempScrPos = scrollPosition + 0;
     for (var i = 0; i < widget.itemKeys.length; i++) {
-        var height = _getWidgetHeight(i);
+      var height = _getWidgetHeight(i);
 
-        
-        if(tempScrPos < height){
-          index += (tempScrPos / height);
-          break;
-        }
-        tempScrPos -= height;
-        index += 1;
+      if (tempScrPos < height) {
+        index += (tempScrPos / height);
+        break;
       }
+      tempScrPos -= height;
+      index += 1;
+    }
 
     //offset = maxScroll - size.height * (actionBarItemsCount - index - 1);
-    
+
     // double index = -1 *
     //     (((maxScroll - scrollPosition) / size.height) -
     //         actionBarItemsCount +
