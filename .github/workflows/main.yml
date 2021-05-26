@@ -1,8 +1,19 @@
 name: Deploy to static
+# on:
+#   push:	
+#     branches:	
+#       - master
 on:
-  push:	
-    branches:	
-      - master
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      type:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Release Type'
+        # Default value if no value is explicitly provided
+        default: 'Web'
+        # Input has to be provided for the workflow to run
+        required: false
 
 jobs:
   deploy:
