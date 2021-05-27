@@ -11,11 +11,12 @@ const homeData = const <dynamic, dynamic>{
   "greeting": "Hello",
   "name": "I'm Tushar Gautam",
   "title": "Full Stack Developer",
-  "bg-image": "images/1home.webp",
+  "bg-image": "assets/images/1home.webp",
   "user-image": "images/man.png"
 };
 
 class AboutData {
+  static const bg_image = "assets/images/2about.webp";
   static const screenTitle = "About";
   static const about_summary =
       """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lobortis tempus efficitur. Integer iaculis urna sed diam dictum molestie.
@@ -77,11 +78,11 @@ class AboutData {
       timeSpan: "July 19- Huly 22",
     ),
   ];
-  static const bg_image = "images/2about.webp";
+  
 }
 
 class SkillsData {
-  static const bg_image = "Images/3showcase.webp";
+  static const bg_image = "assets/Images/3showcase.webp";
   static const list_title = "skills";
   static const color = Colors.pink;
   static const secondaryButtonColor = Colors.blueGrey;
@@ -241,7 +242,7 @@ class SkillsData {
 }
 
 class ContactData{
-  static const bg_image = "images/6contact.webp";
+  static const bg_image = "assets/images/6contact.webp";
   static const List<ContactClass> contacts = [
     const ContactClass(
       contactName : "Gmail",
@@ -279,96 +280,10 @@ class ContactData{
       textColor: Colors.white70,
       bgColor: Colors.black87,
     ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
-    const ContactClass(
-      contactName : "StackOverflow",
-      icon: FontAwesomeIcons.stackOverflow,
-      url: "https://twitter.com/CoderWhoLived",
-      iconColor: Colors.deepOrange,
-      textColor: Colors.white70,
-      bgColor: Colors.black87,
-    ),
+    
   ];
 }
 
-class ContactClass{
-  final String contactName;
-  final IconData icon;
-  final String url;
-  final Color iconColor;
-  final Color textColor;
-  final Color bgColor;
-
-  const ContactClass({required this.contactName, required this.icon, required this.url, this.iconColor = Colors.black, this.textColor = Colors.black,this.bgColor=Colors.white70});
+class BlogData{
+  static const bg_image = "assets/images/5litrature.webp";
 }

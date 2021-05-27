@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio/screens/blog.dart';
 import 'package:portfolio/screens/contact.dart';
 
 import 'package:portfolio/screens/home.dart';
@@ -43,6 +45,12 @@ var screensData = [
     tooltip: "Skills",
     widget: SkillScreen(),
     primaryColor: Colors.pink,
+     ),
+  ScreenData(
+    icon:FontAwesomeIcons.blog,
+    tooltip: "Blog",
+    widget: BlogScreen(),
+    primaryColor: Colors.yellow,
      ),
   ScreenData(
     icon:Icons.contact_mail_outlined,

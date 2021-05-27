@@ -68,3 +68,15 @@ class ProjectsData {
       this.sourceUrl
       });
 }
+
+
+class ContactClass{
+  final String contactName;
+  final IconData icon;
+  final String url;
+  final Color iconColor;
+  final Color textColor;
+  final Color bgColor;
+
+  const ContactClass({required this.contactName, required this.icon, required this.url, this.iconColor = Colors.black, this.textColor = Colors.black,this.bgColor=Colors.white70});
+}
