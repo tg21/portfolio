@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -90,6 +91,9 @@ class _FloatingActionBarState extends State<FloatingActionBar>
     if (height != null) {
       itemSizeCache[index] = height;
     } else {
+      // widget.itemKeys[index+1].currentContext
+      //   ?.findRenderObject()
+      //   ?.showOnScreen();
       height = itemSizeCache[index];
     }
     return height;
@@ -109,7 +113,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
 
   Size size = Size(0, 0);
   int actionBarItemsCount = screensData.length;
-  void moveListToIndex(int index) {
+  void moveListToIndex(int index,{int duration = 1000,Curve curve = Curves.easeInOut}) {
     if (maxScroll == 1) {
       setState(() {
         maxScroll = widget.actionBarController.position.maxScrollExtent + 0;
@@ -120,6 +124,13 @@ class _FloatingActionBarState extends State<FloatingActionBar>
     if (index > 0) {
       for (var i = 0; i < index; i++) {
         var height = _getWidgetHeight(i);
+        if(height == 0){
+          widget.actionBarController.animateTo(offset,
+          duration: Duration(milliseconds: 650), curve: Curves.linear);
+          Timer(Duration(milliseconds: 750), () => moveListToIndex(index,duration: 650,curve: Curves.linear));
+          return;
+        }
+        
         //print(widget.itemKeys[i]);
         //print('height : $i ---> $height');
         offset += height;
@@ -129,7 +140,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
     //print(maxScroll);
     //print('Counts: $actionBarItemsCount : $index ---> $offset');
     widget.actionBarController.animateTo(offset,
-        duration: Duration(milliseconds: 1000), curve: Curves.ease);
+        duration: Duration(milliseconds: duration), curve: curve);
   }
 
   int roundedCurrentScreenIndex = 0;
