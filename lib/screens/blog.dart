@@ -21,6 +21,7 @@ class BlogScreen extends StatelessWidget {
       ),
       child: Container(
         //alignment: Alignment.sta,
+        color: Colors.blue[900]!.withAlpha(150),
         constraints: BoxConstraints(
           minHeight: size.height,
         ),
@@ -35,7 +36,7 @@ class BlogScreen extends StatelessWidget {
                 margin: EdgeInsets.all(20),
                 child: Text(
                   "Blog",
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold,color: Colors.white),
                 ),
               ),
             ),
@@ -59,10 +60,17 @@ class BlogScreen extends StatelessWidget {
                         onTap: () {
                           _launchURL(blog.url);
                         },
-                        child: Container(
+                        child: Card(
                           margin: EdgeInsets.all(10),
+                          elevation: 30,
                           color: blog.bgColor,
-                          alignment: Alignment.center,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                          // alignment: Alignment.center,
+                          // decoration: BoxDecoration(
+                          //   borderRadius: BorderRadius.circular(15),
+                          //   color: blog.bgColor,
+                          //   boxShadow: [BoxShadow(offset: Offset(5,10))],
+                          // ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -78,8 +86,22 @@ class BlogScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   blog.name,
-                                  style: TextStyle(color: blog.textColor,fontSize: 17,fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: blog.textColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
                                   softWrap: true,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Text(blog.details,
+                                  style: TextStyle(
+                                      color: Colors.grey[900],
+                                      fontSize: 13,
+                                      ),
+                                  softWrap: true,
+                                  textAlign: TextAlign.justify,
                                 ),
                               ),
                               Container(
@@ -87,38 +109,30 @@ class BlogScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    Tooltip(
-                                      message: "share on twitter",
-                                      child: RawMaterialButton(
-                                        fillColor: Colors.transparent,
-                                        elevation: 0,
-                                        hoverElevation: 10,
-                                        hoverColor: Colors.white,
-                                        onPressed: () => _launchURL(
-                                            "https://twitter.com/share?url=${blog.url}&text=${blog.name}&via=tushargautam.com&hashtags=hello,there"),
-                                        child: Icon(
-                                          FontAwesomeIcons.twitter,
-                                          size: 15,
-                                          color: Colors.lightBlueAccent,
-                                        ),
-                                      ),
-                                    ),
-                                    Tooltip(
-                                      message: "share on twitter",
-                                      child: RawMaterialButton(
-                                        fillColor: Colors.transparent,
-                                        elevation: 0,
-                                        hoverElevation: 10,
-                                        hoverColor: Colors.transparent,
-                                        onPressed: () => _launchURL(
-                                            "https://twitter.com/share?url=${blog.url}&text=${blog.name}&via=tushargautam.com&hashtags=hello,there"),
-                                        child: Icon(
-                                          FontAwesomeIcons.twitter,
-                                          size: 15,
-                                          color: Colors.lightBlueAccent,
-                                        ),
-                                      ),
-                                    ),
+                                    SocialButton(
+                                        message: "share on twitter",
+                                        url:
+                                            "https://twitter.com/share?url=${blog.url}&text=${blog.name}&via=tushargautam.com&hashtags=hello,there",
+                                        icon: FontAwesomeIcons.twitter,
+                                        color: Colors.blueAccent),
+                                    SocialButton(
+                                        message: "share on linkedIn",
+                                        url:
+                                            "https://twitter.com/share?url=${blog.url}&text=${blog.name}&via=tushargautam.com&hashtags=hello,there",
+                                        icon: FontAwesomeIcons.linkedinIn,
+                                        color: Colors.black),
+                                    SocialButton(
+                                        message: "share on facebook",
+                                        url:
+                                            "https://twitter.com/share?url=${blog.url}&text=${blog.name}&via=tushargautam.com&hashtags=hello,there",
+                                        icon: FontAwesomeIcons.facebook,
+                                        color: Colors.indigo),
+                                    SocialButton(
+                                        message: "share on reddit",
+                                        url:
+                                            "https://twitter.com/share?url=${blog.url}&text=${blog.name}&via=tushargautam.com&hashtags=hello,there",
+                                        icon: FontAwesomeIcons.redditAlien,
+                                        color: Colors.deepOrangeAccent),
                                   ],
                                 ),
                               )
@@ -130,6 +144,40 @@ class BlogScreen extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class SocialButton extends StatelessWidget {
+  final String message;
+  final String url;
+  final IconData icon;
+  final Color color;
+
+  SocialButton(
+      {required this.message,
+      required this.url,
+      required this.icon,
+      required this.color});
+  void _launchURL(String _url) async =>
+      await canLaunch(_url) ? await launch(_url) : print('Cant launch $_url');
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: message,
+      child: RawMaterialButton(
+        fillColor: color,
+        elevation: 0,
+        hoverElevation: 10,
+        shape: CircleBorder(),
+        hoverColor: color,
+        onPressed: () => _launchURL(url),
+        child: Icon(
+          icon,
+          size: 15,
+          color: Colors.white,
         ),
       ),
     );

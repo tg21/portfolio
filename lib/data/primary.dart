@@ -288,7 +288,15 @@ class BlogData{
   static const bg_image = "assets/images/5litrature.webp";
   static const primaryColor = Colors.yellow;
   static const List<BlogClass> blogList = [
-    const BlogClass(name: "How To Fix a bulb without moving a muscle 💡", url: "https://google.com"),
-    const BlogClass(name: "Why reddit is the worst platform for anything", url: "https://reddit.com",bgColor: Colors.deepOrange,textColor: Colors.white),
+    const BlogClass(name: "How To Fix a bulb without moving a muscle 💡", url: "https://google.com",details: """When the exception was thrown, this was the stack
+C:/b/s/w/ir/cache/builder/src/out/host_debug/dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 236:49      throw_
+C:/b/s/w/ir/cache/builder/src/out/host_debug/dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 29:3        assertFailed
+packages/flutter/src/widgets/container.dart 274:42                                                                             new
+packages/portfolio/screens/blog.dart 62:32""" ),
+    const BlogClass(name: "Why reddit is the worst platform for anything", url: "https://reddit.com",bgColor: Colors.green,textColor: Colors.white,details:"""When the exception was thrown, this was the stack
+C:/b/s/w/ir/cache/builder/src/out/host_debug/dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 236:49      throw_
+C:/b/s/w/ir/cache/builder/src/out/host_debug/dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 29:3        assertFailed
+packages/flutter/src/widgets/container.dart 274:42                                                                             new
+packages/portfolio/screens/blog.dart 62:32"""),
   ];
 }

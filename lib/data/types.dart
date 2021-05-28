@@ -82,9 +82,10 @@ class ContactClass{
 }
 class BlogClass{
   final String name;
+  final String details;
   final String url;
   final Color textColor;
   final Color bgColor;
 
-  const BlogClass({required this.name, required this.url, this.textColor = Colors.black,this.bgColor=Colors.white70});
+  const BlogClass({required this.name, required this.url, this.textColor = Colors.black,this.bgColor=Colors.white, required this.details});
 }
