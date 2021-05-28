@@ -82,7 +82,7 @@ class AboutData {
 }
 
 class SkillsData {
-  static const bg_image = "assets/Images/3showcase.webp";
+  static const bg_image = "assets/images/3showcase.webp";
   static const list_title = "skills";
   static const color = Colors.pink;
   static const secondaryButtonColor = Colors.blueGrey;
@@ -286,4 +286,9 @@ class ContactData{
 
 class BlogData{
   static const bg_image = "assets/images/5litrature.webp";
+  static const primaryColor = Colors.yellow;
+  static const List<BlogClass> blogList = [
+    const BlogClass(name: "How To Fix a bulb without moving a muscle 💡", url: "https://google.com"),
+    const BlogClass(name: "Why reddit is the worst platform for anything", url: "https://reddit.com",bgColor: Colors.deepOrange,textColor: Colors.white),
+  ];
 }

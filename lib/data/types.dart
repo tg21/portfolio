@@ -80,3 +80,11 @@ class ContactClass{
 
   const ContactClass({required this.contactName, required this.icon, required this.url, this.iconColor = Colors.black, this.textColor = Colors.black,this.bgColor=Colors.white70});
 }
+class BlogClass{
+  final String name;
+  final String url;
+  final Color textColor;
+  final Color bgColor;
+
+  const BlogClass({required this.name, required this.url, this.textColor = Colors.black,this.bgColor=Colors.white70});
+}
