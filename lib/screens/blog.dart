@@ -61,7 +61,7 @@ class BlogScreen extends StatelessWidget {
                           _launchURL(blog.url);
                         },
                         child: Card(
-                          margin: EdgeInsets.all(10),
+                          margin: EdgeInsets.all(15),
                           elevation: 30,
                           color: blog.bgColor,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -82,8 +82,11 @@ class BlogScreen extends StatelessWidget {
                               //     color: blog.iconColor,
                               //   ),
                               // ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
+                              Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(color: Colors.black12,width: 1))
+                                ),
                                 child: Text(
                                   blog.name,
                                   style: TextStyle(
@@ -105,9 +108,11 @@ class BlogScreen extends StatelessWidget {
                                 ),
                               ),
                               Container(
+                                padding: EdgeInsets.all(10),
                                 child: Row(
+                                  //mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     SocialButton(
                                         message: "share on twitter",
@@ -127,12 +132,7 @@ class BlogScreen extends StatelessWidget {
                                             "https://twitter.com/share?url=${blog.url}&text=${blog.name}&via=tushargautam.com&hashtags=hello,there",
                                         icon: FontAwesomeIcons.facebook,
                                         color: Colors.indigo),
-                                    SocialButton(
-                                        message: "share on reddit",
-                                        url:
-                                            "https://twitter.com/share?url=${blog.url}&text=${blog.name}&via=tushargautam.com&hashtags=hello,there",
-                                        icon: FontAwesomeIcons.redditAlien,
-                                        color: Colors.deepOrangeAccent),
+
                                   ],
                                 ),
                               )
