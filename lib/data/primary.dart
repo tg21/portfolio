@@ -300,3 +300,16 @@ packages/flutter/src/widgets/container.dart 274:42                              
 packages/portfolio/screens/blog.dart 62:32"""),
   ];
 }
+
+
+class ArtData{
+  static const bg_image = 'assets/images/4art.webp';
+  static const List<String> photos = [
+    'assets/images/art/art1.webp',
+    'assets/images/art/art2.webp',
+    'assets/images/art/art3.webp',
+    'assets/images/art/art4.webp',
+    'assets/images/art/art5.webp',
+    'assets/images/art/art6.webp',
+  ];
+}
