@@ -55,6 +55,11 @@ _GridTier _currentSize(BuildContext context) {
   }
 }
 
+
+
+
+
+
 class ResponsiveGridRow extends StatelessWidget {
   final List<ResponsiveGridCol> children;
   final CrossAxisAlignment crossAxisAlignment;
@@ -134,7 +139,7 @@ class ResponsiveGridCol extends Container {
   final Widget child;
   final Alignment? alignment;
   final returnExpanded;
-  
+
   ResponsiveGridCol({
     int xs = 12,
     int? sm,
@@ -166,6 +171,144 @@ class ResponsiveGridCol extends Container {
     );
   }
 }
+
+
+
+
+class StaggeredResponsiveGridRow extends StatelessWidget {
+  final List<StaggeredResponsiveGridCol> children;
+  final CrossAxisAlignment crossAxisAlignment;
+  final MainAxisAlignment mainAxisAlignment;
+  final int rowSegments;
+  final double? height;
+  final double? width;
+  final BoxDecoration? decoration;
+  final bool shrinkChildren;
+  final BoxConstraints? constraints;
+  final bool returnExpanded;
+
+  StaggeredResponsiveGridRow(
+      {required this.children,
+      this.crossAxisAlignment = CrossAxisAlignment.start,
+      this.mainAxisAlignment = MainAxisAlignment.start,
+      this.rowSegments = 12,this.height,this.width,this.decoration,this.shrinkChildren = false,this.constraints,this.returnExpanded = false});
+
+  @override
+  Widget build(BuildContext context) {
+    final rows = <Row>[];
+    final rowKeys = <GlobalKey>[];
+    int accumulatedWidth = 0;
+    var cols = <Widget>[];
+
+    children.forEach((col) {
+      var colWidth = col.currentConfig(context) ?? 1;
+      //
+      if (accumulatedWidth + colWidth > rowSegments) {
+        // if (accumulatedWidth < rowSegments && this.shrinkChildren) {
+        //   cols.add(Spacer(
+        //     flex: rowSegments - accumulatedWidth,
+        //   ));
+        // }
+        rowKeys.add(GlobalKey());
+        rows.add(Row(
+          key: rowKeys.last,
+          children: cols,
+        ));
+        // clear
+        cols = <Widget>[];
+        accumulatedWidth = 0;
+      }
+      //
+      if(rows.length > 0){
+        var rowAboveHeight = rowKeys.last.currentContext?.size?.height ?? 0;
+        var corresPondingChild = rows.last.children[cols.length];
+        double colAboveHeight;
+        if(corresPondingChild.runtimeType.toString() == 'StaggeredResponsiveGridCol'){
+          colAboveHeight = (corresPondingChild as StaggeredResponsiveGridCol).colKey.currentContext?.findRenderObject()?.paintBounds.size.height ?? 0;
+        }else{
+          colAboveHeight = ((corresPondingChild as Container).child as StaggeredResponsiveGridCol).colKey.currentContext?.findRenderObject()?.paintBounds.size.height ?? 0;
+        }
+        cols.add(Container(
+          transform: Matrix4.translationValues(0.0, (colAboveHeight - rowAboveHeight), 0.0),
+          child: col,
+          ));
+      }else{
+        cols.add(col);
+      }
+      accumulatedWidth += colWidth;
+    });
+
+    if (accumulatedWidth >= 0) {
+      // if (accumulatedWidth < rowSegments && this.shrinkChildren){
+      //   cols.add(Spacer(
+      //     flex: rowSegments - accumulatedWidth,
+      //   ));
+      // }
+      rows.add(Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: this.mainAxisAlignment,
+        crossAxisAlignment: this.crossAxisAlignment,
+        children: cols,
+      ));
+    }
+
+    return Container(
+      height: this.height,
+      width: this.width,
+      decoration: this.decoration,
+      constraints: this.constraints,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: rows,
+      ),
+      //children: rows,
+    );
+  }
+}
+
+
+class StaggeredResponsiveGridCol extends Container {
+  final _config = <int?>[]..length = 5;
+  final Widget child;
+  final Alignment? alignment;
+  final returnExpanded;
+  final GlobalKey colKey = GlobalKey();
+
+  StaggeredResponsiveGridCol({
+    int xs = 12,
+    int? sm,
+    int? md,
+    int? lg,
+    int? xl,
+    required this.child,
+    this.alignment,
+    this.returnExpanded = false,
+  })  : super() {
+    _config[_GridTier.xs.index] = xs;
+    _config[_GridTier.sm.index] = sm ?? _config[_GridTier.xs.index];
+    _config[_GridTier.md.index] = md ?? _config[_GridTier.sm.index];
+    _config[_GridTier.lg.index] = lg ?? _config[_GridTier.md.index];
+    _config[_GridTier.xl.index] = xl ?? _config[_GridTier.lg.index];
+  }
+
+  int? currentConfig(BuildContext context) {
+    return _config[_currentSize(context).index];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: this.colKey,
+      //flex: currentConfig(context) ?? 1,
+      child: this.returnExpanded ? child : Container(
+        alignment: this.alignment,
+        child: child),
+    );
+  }
+}
+
+
+
 
 //
 // responsive grid list
