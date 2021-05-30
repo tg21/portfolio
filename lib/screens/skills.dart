@@ -161,18 +161,20 @@ class SkillDetailView extends StatelessWidget {
                                             softWrap: true,
                                           )),
                                           SizedBox(
-                        height: 5,
-                      ),
+                                            height: 5,
+                                          ),
                                           Text(
                                             cert.infoCertificate!,
                                             style: TextStyle(fontSize: 16),
                                             softWrap: true,
                                           ),
                                           SizedBox(
-                        height: 5,
-                      ),
+                                            height: 5,
+                                          ),
                                           DefaultTextStyle(
-                                            style: TextStyle(fontSize: 12),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: SkillsData.fontColor),
                                             child: Row(
                                               children: [
                                                 Text(
@@ -216,7 +218,7 @@ class SkillDetailView extends StatelessWidget {
           // Projects Row Starts
           if (selectedSkill.projects.isNotEmpty)
             Container(
-              margin: EdgeInsets.only(top: 20,bottom: 10),
+              margin: EdgeInsets.only(top: 20, bottom: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -268,18 +270,21 @@ class SkillDetailView extends StatelessWidget {
                                             softWrap: true,
                                           )),
                                           SizedBox(
-                        height: 5,
-                      ),
+                                            height: 5,
+                                          ),
                                           Text(
                                             proj.aboutProject,
                                             style: TextStyle(fontSize: 16),
                                             softWrap: true,
                                           ),
                                           SizedBox(
-                        height: 5,
-                      ),
+                                            height: 5,
+                                          ),
                                           DefaultTextStyle(
-                                            style: TextStyle(fontSize: 12),
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              color: SkillsData.fontColor,
+                                            ),
                                             child: Row(
                                               children: [
                                                 Text(
