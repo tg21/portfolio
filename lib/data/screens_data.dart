@@ -27,32 +27,32 @@ class ScreenData{
 
 //mainly data for actionbar
 var screensData = [
-//  ScreenData(
-//     icon:Icons.house_outlined,
-//     tooltip: "Home",
-//     widget: HomeScreen(),
-//     primaryColor: Color(0xFF3D173F),
-//      ),
-//   ScreenData(
-//     icon:Icons.details_outlined,
-//     tooltip: "About",
-//     widget: AboutScreen(),
-//     primaryColor: Colors.redAccent,
-//      ),
+ ScreenData(
+    icon:Icons.house_outlined,
+    tooltip: "Home",
+    widget: HomeScreen(),
+    primaryColor: Color(0xFF3D173F),
+     ),
+  ScreenData(
+    icon:Icons.details_outlined,
+    tooltip: "About",
+    widget: AboutScreen(),
+    primaryColor: Colors.redAccent,
+     ),
   
      
-//   ScreenData(
-//     icon:Icons.developer_mode_outlined,
-//     tooltip: "Skills",
-//     widget: SkillScreen(),
-//     primaryColor: Colors.pink,
-//      ),
-//   ScreenData(
-//     icon:FontAwesomeIcons.blog,
-//     tooltip: "Blog",
-//     widget: BlogScreen(),
-//     primaryColor: Colors.yellow,
-//      ),
+  ScreenData(
+    icon:Icons.developer_mode_outlined,
+    tooltip: "Skills",
+    widget: SkillScreen(),
+    primaryColor: Colors.pink,
+     ),
+  ScreenData(
+    icon:FontAwesomeIcons.blog,
+    tooltip: "Blog",
+    widget: BlogScreen(),
+    primaryColor: Colors.yellow,
+     ),
   ScreenData(
     icon:FontAwesomeIcons.paintBrush,
     tooltip: "Art",

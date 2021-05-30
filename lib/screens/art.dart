@@ -134,6 +134,8 @@ class ArtScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) => Entry.offset(
                   xOffset: (index == 0 || index == 3) ? -1000 : (index == 2 || index == 5) ? 1000 : 0 ,
                   yOffset: (index == 0 || index == 2 || index == 1) ? -1000 : 1000,// (index == 2 || index == 5 ) ? 1000,
+                  delay: Duration( milliseconds: index * 200),
+                 curve: Curves.easeInOutCirc, 
                   duration: Duration(seconds: 2),
                                   child: Container(
                     color: Colors.green,
