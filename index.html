@@ -38,8 +38,16 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('flutter-first-frame', function() {
-                navigator.serviceWorker.register('flutter_service_worker.js?v=1659327731');
+                navigator.serviceWorker.register('flutter_service_worker.js?v=1142788090');
             });
+        }
+    </script>
+    <script type="text/javascript">
+        let useHtml = true;
+        if (useHtml) {
+            window.flutterWebRenderer = "html";
+        } else {
+            window.flutterWebRenderer = "canvaskit";
         }
     </script>
     <script src="main.dart.js" type="application/javascript"></script>
