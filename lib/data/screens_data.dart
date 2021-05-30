@@ -47,12 +47,12 @@ var screensData = [
 //     widget: SkillScreen(),
 //     primaryColor: Colors.pink,
 //      ),
-  // ScreenData(
-  //   icon:FontAwesomeIcons.blog,
-  //   tooltip: "Blog",
-  //   widget: BlogScreen(),
-  //   primaryColor: Colors.yellow,
-  //    ),
+//   ScreenData(
+//     icon:FontAwesomeIcons.blog,
+//     tooltip: "Blog",
+//     widget: BlogScreen(),
+//     primaryColor: Colors.yellow,
+//      ),
   ScreenData(
     icon:FontAwesomeIcons.paintBrush,
     tooltip: "Art",
