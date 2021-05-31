@@ -140,7 +140,7 @@ class SkillDetailView extends StatelessWidget {
                               padding: EdgeInsets.all(10),
                               child: Row(
                                 children: [
-                                  Image.asset(
+                                  Image.network(
                                     cert.image!,
                                     height: 100,
                                     fit: BoxFit.contain,
@@ -248,101 +248,104 @@ class SkillDetailView extends StatelessWidget {
                             child: Container(
                               padding: EdgeInsets.all(10),
                               child: Row(
-                                children: [
-                                  Image.asset(
-                                    proj.image!,
-                                    height: 100,
-                                    fit: BoxFit.contain,
-                                    scale: 100,
-                                  ),
-                                  Expanded(
-                                    child: Container(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Center(
-                                              child: Text(
-                                            proj.project,
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold),
-                                            softWrap: true,
-                                          )),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            proj.aboutProject,
-                                            style: TextStyle(fontSize: 16),
-                                            softWrap: true,
-                                          ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          DefaultTextStyle(
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              color: SkillsData.fontColor,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Image.network(
+                                      proj.image!,
+                                      fit: BoxFit.contain,
+                                      height:100,
+                                      scale: 100,
+                                      //scale: 100,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.only(left:10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Center(
+                                                child: Text(
+                                              proj.project,
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                              softWrap: true,
+                                            )),
+                                            SizedBox(
+                                              height: 5,
                                             ),
-                                            child: Row(
+                                            Text(
+                                              proj.aboutProject,
+                                              style: TextStyle(fontSize: 16),
+                                              softWrap: true,
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            DefaultTextStyle(
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                color: SkillsData.fontColor,
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    "Duration: ",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Text(proj.duration),
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
                                               children: [
-                                                Text(
-                                                  "Duration: ",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Text(proj.duration),
+                                                if (proj.url != null)
+                                                  RawMaterialButton(
+                                                    fillColor: Colors.pink,
+                                                    hoverElevation: 10,
+                                                    shape: RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                10)),
+                                                    textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                    ),
+                                                    child: Text("view"),
+                                                    onPressed: () {
+                                                      _launchURL(proj.url!);
+                                                    },
+                                                  ),
+                                                if (proj.sourceUrl != null)
+                                                  RawMaterialButton(
+                                                    fillColor: SkillsData
+                                                        .secondaryButtonColor,
+                                                    hoverElevation: 10,
+                                                    padding: EdgeInsets.all(10),
+                                                    shape: RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                10)),
+                                                    textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                    ),
+                                                    child: Text("Source Code"),
+                                                    onPressed: () {
+                                                      _launchURL(proj.sourceUrl!);
+                                                    },
+                                                  ),
                                               ],
                                             ),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              if (proj.url != null)
-                                                RawMaterialButton(
-                                                  fillColor: Colors.pink,
-                                                  hoverElevation: 10,
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                                  textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                  child: Text("view"),
-                                                  onPressed: () {
-                                                    _launchURL(proj.url!);
-                                                  },
-                                                ),
-                                              if (proj.sourceUrl != null)
-                                                RawMaterialButton(
-                                                  fillColor: SkillsData
-                                                      .secondaryButtonColor,
-                                                  hoverElevation: 10,
-                                                  padding: EdgeInsets.all(10),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
-                                                  textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                  child: Text("Source Code"),
-                                                  onPressed: () {
-                                                    _launchURL(proj.sourceUrl!);
-                                                  },
-                                                ),
-                                            ],
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                    )
+                                  ],
+                                ),
                             ),
                           ),
                         ),

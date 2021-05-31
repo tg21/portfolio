@@ -44,7 +44,7 @@ class CertificationData {
 
   const CertificationData(
       {required this.certification,
-      this.image,
+      this.image = 'assets/images/others/certificate.png',
       required this.validaity,
       this.url,
       this.infoCertificate});
@@ -64,7 +64,7 @@ class ProjectsData {
       required this.aboutProject,
       required this.duration,
       this.url,
-      this.image,
+      this.image = 'assets/images/others/code.png',
       this.sourceUrl
       });
 }
