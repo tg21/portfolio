@@ -261,6 +261,14 @@ class ExperienceTile extends StatelessWidget {
                         height: 2,
                         // width:275,
                         color: exp.color,
+                        constraints: BoxConstraints(maxWidth: exp.info.split('\n').fold(0, (len, element) => 
+                          element.length*7 > len ? element.length.toDouble()*7 : len
+                          // if(element.length > len){
+                          //   element.length.toDouble(),
+                          // }else{
+                          //   len
+                          // }
+                        )),
                       ),
                       //if(exp.info != null)
                       Container(
