@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/primary.dart';
 
-import '../components/responsive_grid.dart';
+import 'package:portfolio/components/responsive_grid.dart';
 
 class HomeScreen extends StatelessWidget {
-  final Map<dynamic, dynamic> homeData = data["homeData"];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -15,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       height: size.height,
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: NetworkImage(homeData["bg-image"]), fit: BoxFit.cover),
+            image: NetworkImage(HomeData.bg_image), fit: BoxFit.cover),
       ),
       child: Container(
         alignment: Alignment.center,
@@ -41,8 +40,8 @@ class HomeScreen extends StatelessWidget {
                   lg: 6,
                   child: Container(
                     alignment: Alignment.center, //Alignment(-0.9, 0.9),
-                    child: Image.asset(
-                      homeData["user-image"],
+                    child: Image.network(
+                      HomeData.user_image,
                       height: 256,
                       width: 256,
                     ),
@@ -63,8 +62,8 @@ class HomeScreen extends StatelessWidget {
                         //   child:
                         // ),
                         Text(
-                          homeData['greeting']
-                              .padRight(homeData['name'].length * 5, " "),
+                          HomeData.greeting
+                              .padRight(HomeData.intro.length * 5, " "),
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -79,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                           softWrap: false,
                         ),
                         Text(
-                          homeData['name'],
+                          HomeData.intro,
                           style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
@@ -93,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          homeData['title'],
+                          HomeData.profile,
                           style: TextStyle(
                             fontSize: 35,
                             fontWeight: FontWeight.bold,

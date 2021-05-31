@@ -4,7 +4,6 @@ import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:portfolio/components/responsive_grid.dart';
 // import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:portfolio/data/primary.dart';
 
@@ -31,90 +30,19 @@ class ArtScreen extends StatelessWidget {
         child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           RotatedBox(
             quarterTurns: 3,
-            child: Entry.offset(
-              xOffset: -10000,
-              duration: Duration(seconds: 2),
-              child: Container(
-                margin: EdgeInsets.all(20),
-                child: Text(
-                  "SKETCHES",
-                  style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 15),
-                ),
+            child: Container(
+              margin: EdgeInsets.all(20),
+              child: Text(
+                "SKETCHES",
+                style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 15),
               ),
             ),
           ),
           Spacer(),
-          // StaggeredResponsiveGridRow(
-          //   shrinkChildren: true,
-          //   children: [
-          //   ...ArtData.photos.map((photo) => StaggeredResponsiveGridCol(
-          //     lg: 4,
-          //     md:3,
-          //     sm:6,
-          //     xs:6,
-          //     alignment: Alignment.centerLeft,
-          //     child: Entry.offset(
-          //                       child: Container(
-          //             decoration: BoxDecoration(
-          //               color: Colors.green,
-          //               border: Border.all(),
-          //             ),
-          //             constraints: BoxConstraints(maxWidth: 300,maxHeight: 600),
-          //             // width: 128,
-          //             // height: 128,
-          //             child: Image.network(photo,fit: BoxFit.contain,width: 200, filterQuality: FilterQuality.none,),
-          //           ),
-          //     ),
-          //   ))
-          // ]
-          // ),
-          // Wrap(
-          //   spacing: 0,
-          //   runSpacing: -10,
-          //   //runAlignment
-          //   children: [
-          //     ...ArtData.photos.map((photo) => Container(
-
-          //         decoration: BoxDecoration(
-          //           color: Colors.green,
-          //           border: Border.all(),
-          //         ),
-          //         //width: 300,
-          //         //height: 300,
-          //         child: Image.network(photo,fit: BoxFit.fill,width: 128,filterQuality: FilterQuality.none,,),
-          //       ),),
-          //   ],
-          // ),
-          // Container(
-          //   height: size.height/1.3,
-          //   child: GridView.count(
-          //     //crossAxisCount: 3,
-          //     //primary: true,
-          //         //padding: const EdgeInsets.all(20),
-          //         crossAxisSpacing: 0,
-          //         mainAxisSpacing: 0,
-          //         crossAxisCount: 3,
-          //         childAspectRatio: 1,
-          //         scrollDirection: Axis.vertical,
-          //         shrinkWrap: true,
-          //     children: [
-          //       ...ArtData.photos.map((photo) => Container(
-
-          //         decoration: BoxDecoration(
-          //           color: Colors.green,
-          //           border: Border.all(),
-          //         ),
-          //         //width: 300,
-          //         //height: 300,
-          //         child: Image.network(photo,fit: BoxFit.fill,),
-          //       ),),
-          //     ],
-          //     ),
-          // ),
           Container(
             //height: size.height/1.2,
             width: min(700, size.width / 1.3),
@@ -130,22 +58,12 @@ class ArtScreen extends StatelessWidget {
               primary: true,
               shrinkWrap: true,
 
-              itemBuilder: (BuildContext context, int index) => Entry.all(
-                // xOffset: (index == 0 || index == 3) ? -1000 : (index == 2 || index == 5) ? 1000 : 0 ,
-                // yOffset: (index == 0 || index == 2 || index == 1) ? -1000 : 1000,// (index == 2 || index == 5 ) ? 1000,
-                opacity: (index + 1) * 0.1,
-                //angle: (index+1)*15,
-                scale: (index+1)*0.2,
-                delay: Duration(milliseconds: index * 200),
-                curve: Curves.easeInOutCirc,
-                duration: Duration(seconds: 2),
-                child: Container(
-                  color: Colors.green,
-                  child: Image.network(
-                    ArtData.photos[index],
-                    fit: BoxFit.contain,
-                    filterQuality: FilterQuality.none,
-                  ),
+              itemBuilder: (BuildContext context, int index) => Container(
+                color: Colors.transparent,
+                child: Image.network(
+                  ArtData.photos[index],
+                  fit: BoxFit.contain,
+                  filterQuality: FilterQuality.none,
                 ),
               ),
               staggeredTileBuilder: (int index) => StaggeredTile.fit(1),

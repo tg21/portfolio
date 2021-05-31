@@ -4,16 +4,24 @@ import 'package:portfolio/data/types.dart';
 
 const data = <dynamic, dynamic>{
   "AppTitle": "Tushar Gautam",
-  "homeData": homeData,
 };
 
-const homeData = const <dynamic, dynamic>{
-  "greeting": "Hello",
-  "name": "I'm Tushar Gautam",
-  "title": "Full Stack Developer",
-  "bg-image": "assets/images/1home.webp",
-  "user-image": "images/man.png"
-};
+// const homeData = const <dynamic, dynamic>{
+//   "greeting": "Hello",
+//   "name": "I'm Tushar Gautam",
+//   "title": "Full Stack Developer",
+//   "bg-image": "assets/images/1home.webp",
+//   "user-image": "images/man.png"
+// };
+
+class HomeData{
+  static const greeting = "hello";
+  static const intro = "I'm Tushar Gautam";
+  static const profile = "Software Engineer";
+  static const bg_image = "assets/images/1home.webp";
+  static const user_image = "assets/images/man.png";
+}
+
 
 class AboutData {
   static const bg_image = "assets/images/2about.webp";
