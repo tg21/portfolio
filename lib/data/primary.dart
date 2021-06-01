@@ -125,110 +125,52 @@ I have worked with two major flutter projects.""",
             certification: "App Brewery Introduction to flutter Certification",
             validaity: "lifetime",
             url: "https://google.com",
-            //image: "images/man.png",
+            image: "https://www.londonappbrewery.com/wp-content/uploads/2015/06/London-App-Brewery-Logo-Large.png",
             infoCertificate: "Completed Flutter Course with App Brewery",
           ),
           const CertificationData(
             certification: "SoloLearn Dart Certification",
             validaity: "lifetime",
             url: "https://google.com",
-            image: "images/man.png",
+            image: "assets/images/man.png",
             infoCertificate: "Completed Dart Course with Solo Learn",
           ),
         ],
         projects: [
           const ProjectsData(
             project: "The Last Dino Run",
-            duration: "2020 - 2021",
+            duration: "Dec 20 - April 21",
             aboutProject:
-                "An android game based on Chrome's game made with flutter from scratch without using any game engines like flame or unity",
+                """An android game based on Chrome's famous offline game made with flutter from scratch without using any game engines like flame or unity.
+It is available on google play store.""",
             image: "images/man.png",
-            url: "https://github.com",
+            url: "https://play.google.com/store/apps/details?id=com.appturtles.the_last_dino",
           ),
           const ProjectsData(
             project: "This Website",
-            duration: "2021 - 2021",
+            duration: "April 21 - May 21",
             aboutProject:
-                "WiBuseter is an opesource website enumerator made with python3",
+                "This website is made with flutter form scratch. It uses flutter-web with html as web-renderer.",
             //image: "images/man.png",
-            url: "https://github.com",
+            url: "#",
           ),
         ]),
     const SkillsFormat(
-        skillName: "Angular",
+        skillName: "React",
         expirenceTimeWithSkill: "1+ years",
-        details: "I have worked on few of my personal Flutter projects.",
-        certifications: [
-          const CertificationData(
-            certification: "App Brewery Introduction to flutter Certification",
-            validaity: "lifetime",
-            url: "https://google.com",
-            image: "images/man.png",
-            infoCertificate: "Completed Flutter Course with App Brewery",
-          ),
-          const CertificationData(
-            certification: "SoloLearn Dart Certification",
-            validaity: "lifetime",
-            url: "https://google.com",
-            image: "images/man.png",
-            infoCertificate: "Completed Dart Course with Solo Learn",
-          ),
-        ],
+        details: """I have been working with flutter for more than a year, and I think this is one of the best frameworks available for cross-platform development, backed by big commmunity and all the benefits of dart langauage are major plus points.
+I have worked with two major flutter projects.""",
+        certifications: [],
         projects: [
           const ProjectsData(
-            project: "The Last Dino Run",
-            duration: "2020 - 2021",
+            project: "Unburden App",
+            duration: "Dec 20 - April 21",
             aboutProject:
-                "An android game based on Chrome's game made with flutter from scratch without using any game engines like flame or unity",
-            image: "images/man.png",
-            url: "https://github.com",
-          ),
-          const ProjectsData(
-            project: "This Website",
-            duration: "2021 - 2021",
-            aboutProject:
-                "WiBuseter is an opesource website enumerator made with python3",
-            image: "images/man.png",
-            url: "https://github.com",
-            sourceUrl: "https://tg21.github.io",
-          ),
-        ]),
-    const SkillsFormat(
-        skillName: "React-Native",
-        expirenceTimeWithSkill: "1+ years",
-        details: "I have worked on few of my personal Flutter projects.",
-        certifications: [
-          const CertificationData(
-            certification: "App Brewery Introduction to flutter Certification",
-            validaity: "lifetime",
-            url: "https://google.com",
-            image: "images/man.png",
-            infoCertificate: "Completed Flutter Course with App Brewery",
-          ),
-          const CertificationData(
-            certification: "SoloLearn Dart Certification",
-            validaity: "lifetime",
-            url: "https://google.com",
-            image: "images/man.png",
-            infoCertificate: "Completed Dart Course with Solo Learn",
-          ),
-        ],
-        projects: [
-          const ProjectsData(
-            project: "The Last Dino Run",
-            duration: "2020 - 2021",
-            aboutProject:
-                "An android game based on Chrome's game made with flutter from scratch without using any game engines like flame or unity",
-            image: "images/man.png",
-            //url: "https://github.com",
-          ),
-          const ProjectsData(
-            project: "This Website",
-            duration: "2021 - 2021",
-            aboutProject:
-                "WiBuseter is an opesource website enumerator made with python3",
-            image: "images/man.png",
-            sourceUrl: "https://github.com",
+                """An android application made with react-native for anonymous peer support where users can login and share what's on there mind anonymously without fearing any judgement.
+Its backend is powered by node js, express.js and mongo db. It was primarily deployed on an AWS EC2 instance, and currently is running on IBM cloud.
+Unburden app is available on goolge play store.""",
+            image: "https://appturtles.com/unburden/assets/img/illus/icon.png",
+            url: "https://appturtles.com/unburden",
           ),
         ]),
   ];

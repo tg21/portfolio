@@ -33,7 +33,7 @@ class _SkillScreenState extends State<SkillScreen> {
       child: DefaultTextStyle(
         style: TextStyle(color: SkillsData.fontColor),
         child: Container(
-          margin: EdgeInsets.all(50),
+          margin: EdgeInsets.all(size.width / 38), // 1920 div 38 ~ 50
           padding: EdgeInsets.all(15),
           color: Colors.white70,
           alignment: Alignment.topCenter,
@@ -248,104 +248,123 @@ class SkillDetailView extends StatelessWidget {
                             child: Container(
                               padding: EdgeInsets.all(10),
                               child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Image.network(
-                                      proj.image!,
-                                      fit: BoxFit.contain,
-                                      height:100,
-                                      scale: 100,
-                                      //scale: 100,
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        padding: EdgeInsets.only(left:10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Center(
-                                                child: Text(
-                                              proj.project,
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold),
-                                              softWrap: true,
-                                            )),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              proj.aboutProject,
-                                              style: TextStyle(fontSize: 16),
-                                              softWrap: true,
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            DefaultTextStyle(
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                color: SkillsData.fontColor,
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    "Duration: ",
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.network(
+                                    proj.image!,
+                                    fit: BoxFit.contain,
+                                    height: 100,
+                                    scale: 100,
+                                    //scale: 100,
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Center(
+                                              child: Text(
+                                            proj.project,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                            softWrap: true,
+                                          )),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            proj.aboutProject,
+                                            //maxLines: 1,
+                                            //overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(fontSize: 16),
+                                            softWrap: true,
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          RichText(
+                                              text: TextSpan(
+                                                  text: "Duration: ",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black,
+                                                    fontSize: 12,
                                                   ),
-                                                  Text(proj.duration),
-                                                ],
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                if (proj.url != null)
-                                                  RawMaterialButton(
-                                                    fillColor: Colors.pink,
-                                                    hoverElevation: 10,
-                                                    shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                10)),
-                                                    textStyle: TextStyle(
-                                                      color: Colors.white,
-                                                    ),
-                                                    child: Text("view"),
-                                                    onPressed: () {
-                                                      _launchURL(proj.url!);
-                                                    },
+                                                  children: [
+                                                TextSpan(
+                                                  text: proj.duration,
+                                                  style: TextStyle(
+                                                    //color: Colors.black,
+                                                    fontWeight: FontWeight.normal,
                                                   ),
-                                                if (proj.sourceUrl != null)
-                                                  RawMaterialButton(
-                                                    fillColor: SkillsData
-                                                        .secondaryButtonColor,
-                                                    hoverElevation: 10,
-                                                    padding: EdgeInsets.all(10),
-                                                    shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                10)),
-                                                    textStyle: TextStyle(
-                                                      color: Colors.white,
-                                                    ),
-                                                    child: Text("Source Code"),
-                                                    onPressed: () {
-                                                      _launchURL(proj.sourceUrl!);
-                                                    },
+                                                ),
+                                              ])),
+                                          // DefaultTextStyle(
+                                          //   style: TextStyle(
+                                          //     fontSize: 12,
+                                          //     color: SkillsData.fontColor,
+                                          //   ),
+                                          //   child: Row(
+                                          //     children: [
+                                          //       Text(
+                                          //         "Duration: ",
+                                          //         style: TextStyle(
+                                          //             fontWeight:
+                                          //                 FontWeight.bold),
+                                          //       ),
+                                          //       Text(proj.duration),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              if (proj.url != null)
+                                                RawMaterialButton(
+                                                  fillColor: Colors.pink,
+                                                  hoverElevation: 10,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                  textStyle: TextStyle(
+                                                    color: Colors.white,
                                                   ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                                  child: Text("view"),
+                                                  onPressed: () {
+                                                    _launchURL(proj.url!);
+                                                  },
+                                                ),
+                                              if (proj.sourceUrl != null)
+                                                RawMaterialButton(
+                                                  fillColor: SkillsData
+                                                      .secondaryButtonColor,
+                                                  hoverElevation: 10,
+                                                  padding: EdgeInsets.all(10),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                  textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                  child: Text("Source Code"),
+                                                  onPressed: () {
+                                                    _launchURL(proj.sourceUrl!);
+                                                  },
+                                                ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
