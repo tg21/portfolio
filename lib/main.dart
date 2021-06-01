@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       builder: (context,widget) => ResponsiveWrapper.builder(
         BouncingScrollWrapper.builder(context, widget!),
-          maxWidth: 2048,
+          maxWidth: double.infinity,
           minWidth: 450,
           defaultScale: true,
           breakpoints: [
@@ -83,16 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
         // ),
         Container(
           child: SingleChildScrollView(
-            // itemCount: screensData.length,
             physics: ClampingScrollPhysics(),
             controller: actionBarController,
-            // itemBuilder: (BuildContext context, int index) {
-            //   return Container(
-            //     alignment: Alignment.topCenter,
-            //     key: widgetKeys[index],
-            //     child: screensData[index].widget,
-            //     );
-            // }
             child: Column(children: [
               ...screensData.map((item) => Container(
                 alignment: Alignment.topCenter,
