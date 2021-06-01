@@ -67,18 +67,39 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(children: [
+        // Container(
+        //   child: ListView.builder(
+        //     itemCount: screensData.length,
+        //     physics: ClampingScrollPhysics(),
+        //     controller: actionBarController,
+        //     itemBuilder: (BuildContext context, int index) {
+        //       return Container(
+        //         alignment: Alignment.topCenter,
+        //         key: widgetKeys[index],
+        //         child: screensData[index].widget,
+        //         );
+        //     }
+        //   ),
+        // ),
         Container(
-          child: ListView.builder(
-            itemCount: screensData.length,
+          child: SingleChildScrollView(
+            // itemCount: screensData.length,
             physics: ClampingScrollPhysics(),
             controller: actionBarController,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
+            // itemBuilder: (BuildContext context, int index) {
+            //   return Container(
+            //     alignment: Alignment.topCenter,
+            //     key: widgetKeys[index],
+            //     child: screensData[index].widget,
+            //     );
+            // }
+            child: Column(children: [
+              ...screensData.map((item) => Container(
                 alignment: Alignment.topCenter,
-                key: widgetKeys[index],
-                child: screensData[index].widget,
-                );
-            }
+                key: widgetKeys[screensData.indexOf(item)],
+                child: item.widget,
+                )),
+            ],),
           ),
         ),
         FloatingActionBar(
