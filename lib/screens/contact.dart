@@ -55,14 +55,18 @@ class ContactScreen extends StatelessWidget {
                       sm: 4,
                       md: 3,
                       lg: 2,
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchURL(contact.url);
-                        },
-                        child: Container(
-                          margin: EdgeInsets.all(10),
-                          color: contact.bgColor,
-                          alignment: Alignment.center,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                                              child: RawMaterialButton(
+                          // margin: EdgeInsets.all(10),
+                          fillColor: contact.bgColor,
+                          hoverElevation: 10,
+                          animationDuration: Duration(milliseconds: 200),
+                          padding: EdgeInsets.all(10),
+                          // alignment: Alignment.center,
+                          onPressed: () {
+                            _launchURL(contact.url);
+                          },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -78,7 +82,7 @@ class ContactScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   contact.contactName,
-                                  style: TextStyle(color: contact.textColor),
+                                  style: TextStyle(color: contact.textColor,fontWeight: FontWeight.bold),
                                 ),
                               )
                             ],
