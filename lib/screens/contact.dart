@@ -24,6 +24,7 @@ class ContactScreen extends StatelessWidget {
         constraints: BoxConstraints(
           minHeight: size.height,
         ),
+        padding: EdgeInsets.all(15),
         //color: Colors.white24,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -57,10 +58,12 @@ class ContactScreen extends StatelessWidget {
                       lg: 2,
                       child: Padding(
                         padding: EdgeInsets.all(10),
-                                              child: RawMaterialButton(
+                        child: RawMaterialButton(
                           // margin: EdgeInsets.all(10),
                           fillColor: contact.bgColor,
-                          hoverElevation: 10,
+                          hoverColor: contact.bgColor,
+                          elevation: 10,
+                          hoverElevation: 15,
                           animationDuration: Duration(milliseconds: 200),
                           padding: EdgeInsets.all(10),
                           // alignment: Alignment.center,
@@ -82,7 +85,9 @@ class ContactScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   contact.contactName,
-                                  style: TextStyle(color: contact.textColor,fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      color: contact.textColor,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               )
                             ],

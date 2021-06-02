@@ -223,9 +223,9 @@ class ContactData {
       contactName: "StackOverflow",
       icon: FontAwesomeIcons.stackOverflow,
       url: "https://stackoverflow.com/users/story/8737972",
-      iconColor: Colors.white,
-      textColor: Colors.white,
-      bgColor: Colors.deepOrange,
+      iconColor: Colors.deepOrange,
+      textColor: Colors.black,
+      bgColor: Colors.white,
     ),
     const ContactClass(
       contactName: "Hackerrank",
