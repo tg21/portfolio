@@ -26,9 +26,9 @@ class AboutData {
   static const bg_image = "assets/images/2about.webp";
   static const screenTitle = "About";
   static const about_summary =
-      """I am Software Engineer. I have a degree in Computer Science and I am pursuing Master's degree in Computer Applications. I love programming and learning new technologies.
-I love every thing programming related but python, JavaScript, dart and c# are my favourite languages.
-I have worked on few of my personal projects""";
+      """I am a Software Engineer. I have a degree in Computer Science and I am pursuing Master's degree in Computer Applications. I love programming and learning new technologies.
+I enjoy almost every thing programming related but python, JavaScript, dart and c# are my favourite languages.
+I have worked on few of my personal projects as well because I think that the best way to learn a new technology is to build something cool with it.""";
   static const List<ExperianceData> experience = [
     const ExperianceData(
       organisation: "Tech Mahindra",
@@ -80,7 +80,8 @@ class SkillsData {
         skillName: "Python",
         expirenceTimeWithSkill: "4+ years",
         details:
-            "Python is one of my favourite langauges. It is my go to lanaguage to solve any problem with scriptable solution. Apart form using it to script almost every small problem with it, I have worked on few of my personal python projects that are a bit larger in scale ",
+            """"Python is one of my favourite langauges. It is my go to lanaguage to solve any problem with scriptable solution. Apart form using it to script almost every small problem with it, I have worked on few of my personal python projects that are a bit larger in scale,
+Professionaly I have used python for automating tasks of operations teams at TechMahindra""",
         certifications: [
           // const CertificationData(
           //   certification: "SoloLearn Python Certification",
@@ -118,14 +119,16 @@ class SkillsData {
     const SkillsFormat(
         skillName: "Flutter",
         expirenceTimeWithSkill: "1+ years",
-        details: """I have been working with flutter for more than a year, and I think this is one of the best frameworks available for cross-platform development, backed by big commmunity and all the benefits of dart langauage are major plus points.
+        details:
+            """I have been working with flutter for more than a year, and I think this is one of the best frameworks available for cross-platform development, backed by big commmunity and all the benefits of dart langauage are major plus points.
 I have worked with two major flutter projects.""",
         certifications: [
           const CertificationData(
             certification: "App Brewery Introduction to flutter Certification",
             validaity: "lifetime",
             url: "https://google.com",
-            image: "https://www.londonappbrewery.com/wp-content/uploads/2015/06/London-App-Brewery-Logo-Large.png",
+            image:
+                "https://www.londonappbrewery.com/wp-content/uploads/2015/06/London-App-Brewery-Logo-Large.png",
             infoCertificate: "Completed Flutter Course with App Brewery",
           ),
           const CertificationData(
@@ -144,7 +147,8 @@ I have worked with two major flutter projects.""",
                 """An android game based on Chrome's famous offline game made with flutter from scratch without using any game engines like flame or unity.
 It is available on google play store.""",
             image: "images/man.png",
-            url: "https://play.google.com/store/apps/details?id=com.appturtles.the_last_dino",
+            url:
+                "https://play.google.com/store/apps/details?id=com.appturtles.the_last_dino",
           ),
           const ProjectsData(
             project: "This Website",
@@ -153,13 +157,15 @@ It is available on google play store.""",
                 "This website is made with flutter form scratch. It uses flutter-web with html as web-renderer.",
             //image: "images/man.png",
             url: "#",
+            sourceUrl: "https://github.com/tg21/protfolio",
           ),
         ]),
     const SkillsFormat(
         skillName: "React",
         expirenceTimeWithSkill: "1+ years",
-        details: """I have been working with flutter for more than a year, and I think this is one of the best frameworks available for cross-platform development, backed by big commmunity and all the benefits of dart langauage are major plus points.
-I have worked with two major flutter projects.""",
+        details:
+            """I have been working with react/react-native on my personal projects for more than a year. The first react-native project I picked was ann android chat application, I learned most of react while working on it.
+I have also been working on another react-typeScript web application project, it is in very early stage of devlopent that is why it is not mentioned below""",
         certifications: [],
         projects: [
           const ProjectsData(
@@ -173,6 +179,16 @@ Unburden app is available on goolge play store.""",
             url: "https://appturtles.com/unburden",
           ),
         ]),
+    const SkillsFormat(
+        skillName: "Angular",
+        expirenceTimeWithSkill: "2+ years",
+        details:
+            """I have been working with Angular JS professionally for two years.
+At TechMahindra I developed several internal/in-house web application with Angular JS and C# asp.net for the client which focused on tracking progress of client's production team, storing important day-to-day data in servers which helped eliminate need of maintaining excel sheets at client't end.
+Automatic report generations from data and data visualisation for management that provided more insights into opertions and make better business decisions.
+""",
+        certifications: [],
+        projects: []),
   ];
 }
 
@@ -180,13 +196,13 @@ class ContactData {
   static const bg_image = "assets/images/6contact.webp";
   static const List<ContactClass> contacts = [
     const ContactClass(
-        contactName: "Gmail",
-        icon: FontAwesomeIcons.solidEnvelope,
-        url: "mailto:gautamtushar21@gmail.com",
-        iconColor: Colors.white,
-        bgColor: Colors.red,
-        textColor: Colors.white,
-        ),
+      contactName: "Gmail",
+      icon: FontAwesomeIcons.solidEnvelope,
+      url: "mailto:gautamtushar21@gmail.com",
+      iconColor: Colors.white,
+      bgColor: Colors.red,
+      textColor: Colors.white,
+    ),
     const ContactClass(
       contactName: "Twitter",
       icon: FontAwesomeIcons.twitter,
