@@ -106,14 +106,15 @@ class _FloatingActionBarState extends State<FloatingActionBar>
     yOffset += ((preciseCurrentScreenIndex - roundedCurrentScreenIndex) *
         alignmentWindowSize);
     if (yOffset > 2) {
-      yOffset -= 1;
+      yOffset -= 0.9;
     }
-    return min(1.05, yOffset);
+    return min(1.15, yOffset);
   }
 
   Size size = Size(0, 0);
   int actionBarItemsCount = screensData.length;
-  void moveListToIndex(int index,{int duration = 1000,Curve curve = Curves.easeInOut}) {
+  void moveListToIndex(int index,
+      {int duration = 1000, Curve curve = Curves.easeInOut}) {
     if (maxScroll == 1) {
       setState(() {
         maxScroll = widget.actionBarController.position.maxScrollExtent + 0;
@@ -124,13 +125,16 @@ class _FloatingActionBarState extends State<FloatingActionBar>
     if (index > 0) {
       for (var i = 0; i < index; i++) {
         var height = _getWidgetHeight(i);
-        if(height == 0){
+        if (height == 0) {
           widget.actionBarController.animateTo(offset,
-          duration: Duration(milliseconds: 650), curve: Curves.linear);
-          Timer(Duration(milliseconds: 750), () => moveListToIndex(index,duration: 650,curve: Curves.linear));
+              duration: Duration(milliseconds: 650), curve: Curves.linear);
+          Timer(
+              Duration(milliseconds: 750),
+              () =>
+                  moveListToIndex(index, duration: 650, curve: Curves.linear));
           return;
         }
-        
+
         //print(widget.itemKeys[i]);
         //print('height : $i ---> $height');
         offset += height;
@@ -236,7 +240,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                 child: Container(
                     height: widget.size.height / 1.5,
                     width: 70, //size.width * 0.1,
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     //width: widget.size.width * 0.1,
                     //alignment: Alignment(0.95,0),
                     decoration: BoxDecoration(
@@ -268,6 +272,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                         ),
                         Container(
                           width: 100,
+                          padding: EdgeInsets.symmetric(vertical: 10),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
