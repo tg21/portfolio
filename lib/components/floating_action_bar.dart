@@ -214,7 +214,7 @@ class _FloatingActionBarState extends State<FloatingActionBar>
         preciseCurrentScreenIndex <= index + 0.3)) {
       return isHovered ? Colors.black : Colors.white;
     } else {
-      return isHovered ? screensData[index].primaryColor : Colors.black;
+      return isHovered ? screensData[index].primaryColor : Colors.black87;
     }
   }
 
@@ -284,6 +284,14 @@ class _FloatingActionBarState extends State<FloatingActionBar>
                                   onHover: (hover) => actionBarItemHovered(
                                       hover, screensData.indexOf(item)),
                                   child: Tooltip(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white70,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    textStyle: TextStyle(
+                                      color: item.primaryColor,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                     child: Icon(
                                       item.icon,
                                       color: getActionBarIconColorOnHover(
