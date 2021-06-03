@@ -139,6 +139,7 @@ class ResponsiveGridCol extends Container {
   final Widget child;
   final Alignment? alignment;
   final returnExpanded;
+  final BoxDecoration? decoration;
 
   ResponsiveGridCol({
     int xs = 12,
@@ -149,6 +150,7 @@ class ResponsiveGridCol extends Container {
     required this.child,
     this.alignment,
     this.returnExpanded = false,
+    this.decoration,
   })  : super() {
     _config[_GridTier.xs.index] = xs;
     _config[_GridTier.sm.index] = sm ?? _config[_GridTier.xs.index];
@@ -167,6 +169,7 @@ class ResponsiveGridCol extends Container {
       flex: currentConfig(context) ?? 1,
       child: this.returnExpanded ? child : Container(
         alignment: this.alignment,
+        decoration: this.decoration,
         child: child),
     );
   }
