@@ -19,7 +19,8 @@ class HomeData {
   static const intro = "I'm Tushar Gautam";
   static const profile = "Software Engineer";
   static const bg_image = "assets/images/1home.webp";
-  static const user_image = "assets/images/man.png";
+  // static const user_image = "assets/images/man.png";
+  static const user_image = "https://avatars.githubusercontent.com/u/21080598?v=4";
 }
 
 class AboutData {
@@ -135,7 +136,6 @@ I have worked with two major flutter projects.""",
             certification: "SoloLearn Dart Certification",
             validaity: "lifetime",
             url: "https://google.com",
-            image: "assets/images/man.png",
             infoCertificate: "Completed Dart Course with Solo Learn",
           ),
         ],
@@ -180,15 +180,41 @@ Unburden app is available on goolge play store.""",
           ),
         ]),
     const SkillsFormat(
-        skillName: "Angular",
+        skillName: "Angular & C#",
         expirenceTimeWithSkill: "2+ years",
         details:
             """I have been working with Angular JS professionally for two years.
 At TechMahindra I developed several internal/in-house web application with Angular JS and C# asp.net for the client which focused on tracking progress of client's production team, storing important day-to-day data in servers which helped eliminate need of maintaining excel sheets at client't end.
 Automatic report generations from data and data visualisation for management that provided more insights into opertions and make better business decisions.
+Also used C# .net for desktop application developement.
 """,
         certifications: [],
         projects: []),
+    const SkillsFormat(
+        skillName: "JAVA",
+        expirenceTimeWithSkill: "1+ years",
+        details:
+            """I learned JAVA in college and most of the expirence I have with JAVA is from working on my personal android projects. I think that JAVA is a very powerful lanaguage if not very developer friendly.
+For android projects I now prefer Kotlin, which is much more developer friiendly and just as powerful as JAVA""",
+        certifications: [],
+        projects: [
+          const ProjectsData(
+            project: "Android Web Scraper",
+            duration: "Jan 18 - Dec 18",
+            aboutProject:
+                """An android based web-scraper made with the help of JSoup library. It can scrape static information from websites, using custom css selectors which can be changed in code at any time. It was desgined to scrape multiple e-commerce sites for a given query simultaneously and give combined result to user.""",
+            // image: "https://appturtles.com/unburden/assets/img/illus/icon.png",
+            sourceUrl: "https://github.com/tg21/AndroidWebScraper",
+          ),
+          const ProjectsData(
+            project: "Grenade Launcher",
+            duration: "Mar 18 - July 19",
+            aboutProject:
+                """Grenade is a Launcher application for android. It has two branches one is built with JAVA and other with Kotlin.""",
+            // image: "https://appturtles.com/unburden/assets/img/illus/icon.png",
+            sourceUrl: "https://github.com/tg21/GrenadeLauncher",
+          ),
+        ]),
   ];
 }
 

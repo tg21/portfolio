@@ -44,7 +44,7 @@ class CertificationData {
 
   const CertificationData(
       {required this.certification,
-      this.image = 'assets/images/others/certificate.png',
+      this.image = 'https://image.flaticon.com/icons/png/128/3688/3688571.png',
       required this.validaity,
       this.url,
       this.infoCertificate});
@@ -64,7 +64,7 @@ class ProjectsData {
       required this.aboutProject,
       required this.duration,
       this.url,
-      this.image = 'assets/images/others/code.png',
+      this.image = 'https://image.flaticon.com/icons/png/128/1005/1005142.png',
       this.sourceUrl
       });
 }

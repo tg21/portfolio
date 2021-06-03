@@ -140,12 +140,7 @@ class SkillDetailView extends StatelessWidget {
                               padding: EdgeInsets.all(10),
                               child: Row(
                                 children: [
-                                  Image.network(
-                                    cert.image!,
-                                    height: 100,
-                                    fit: BoxFit.contain,
-                                    scale: 100,
-                                  ),
+                                  Gravatar(imageUrl: cert.image!),
                                   Expanded(
                                     child: Container(
                                       child: Column(
@@ -250,13 +245,7 @@ class SkillDetailView extends StatelessWidget {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Image.network(
-                                    proj.image!,
-                                    fit: BoxFit.contain,
-                                    height: 100,
-                                    scale: 100,
-                                    //scale: 100,
-                                  ),
+                                  Gravatar(imageUrl: proj.image!),
                                   Expanded(
                                     child: Container(
                                       padding: EdgeInsets.only(left: 10),
@@ -298,7 +287,8 @@ class SkillDetailView extends StatelessWidget {
                                                   text: proj.duration,
                                                   style: TextStyle(
                                                     //color: Colors.black,
-                                                    fontWeight: FontWeight.normal,
+                                                    fontWeight:
+                                                        FontWeight.normal,
                                                   ),
                                                 ),
                                               ])),
@@ -375,6 +365,30 @@ class SkillDetailView extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class Gravatar extends StatelessWidget {
+  final String imageUrl;
+  const Gravatar({Key? key, required this.imageUrl}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: 100,
+        height: 100,
+        margin: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          color: Colors.transparent,
+          image: DecorationImage(
+            image: NetworkImage(
+              imageUrl,
+            ),
+            fit: BoxFit.fitHeight,
+            scale: 100,
+          ),
+        ));
   }
 }
 
