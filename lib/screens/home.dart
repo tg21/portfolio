@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
               //   constraints: BoxConstraints(
               //     minHeight: size.height,
               // ),
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ResponsiveGridCol(
                   returnExpanded: true,
@@ -39,20 +39,34 @@ class HomeScreen extends StatelessWidget {
                   //flex: 1,
                   lg: 6,
                   child: Container(
+                    // height: 300,
+                    // width: 300,
+                    // color: Colors.red,
                     alignment: Alignment.center, //Alignment(-0.9, 0.9),
-                    child: Image.network(
-                      HomeData.user_image,
-                      height: 256,
-                      width: 256,
+                    child: CircleAvatar(
+                      radius: 128,
+                      foregroundImage: NetworkImage(
+                        HomeData.user_image,
+
+                      ),
+                      backgroundColor: Colors.transparent,
+                      // child: Image.network(
+                      //   HomeData.user_image,
+                      //   height: 256,
+                      //   width: 256,
+                      // ),
                     ),
                   ),
                 ),
                 ResponsiveGridCol(
+                  // alignment: Alignment.centerLeft,
+                  // decoration: BoxDecoration(color: Colors.green),
                   //flex: 1,
                   returnExpanded: true,
                   lg: 6,
                   child: Container(
-                    // color: Colors.white,
+                    // color: Colors.black54,
+                    alignment: Alignment.topCenter,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
