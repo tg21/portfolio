@@ -156,11 +156,11 @@ It is available on google play store.""",
             aboutProject:
                 "This website is made with flutter form scratch. It uses flutter-web with html as web-renderer.",
             //image: "images/man.png",
-            url: "#",
+            //url: "#",
             sourceUrl: "https://github.com/tg21/protfolio",
           ),
         ]),
-    const SkillsFormat(
+        const SkillsFormat(
         skillName: "React",
         expirenceTimeWithSkill: "1+ years",
         details:
@@ -180,17 +180,6 @@ Unburden app is available on goolge play store.""",
           ),
         ]),
     const SkillsFormat(
-        skillName: "Angular & C#",
-        expirenceTimeWithSkill: "2+ years",
-        details:
-            """I have been working with Angular JS professionally for two years.
-At TechMahindra I developed several internal/in-house web application with Angular JS and C# asp.net for the client which focused on tracking progress of client's production team, storing important day-to-day data in servers which helped eliminate need of maintaining excel sheets at client't end.
-Automatic report generations from data and data visualisation for management that provided more insights into opertions and make better business decisions.
-Also used C# .net for desktop application developement.
-""",
-        certifications: [],
-        projects: []),
-    const SkillsFormat(
         skillName: "JAVA",
         expirenceTimeWithSkill: "1+ years",
         details:
@@ -208,13 +197,24 @@ For android projects I now prefer Kotlin, which is much more developer friiendly
           ),
           const ProjectsData(
             project: "Grenade Launcher",
-            duration: "Mar 18 - July 19",
+            duration: "Mar 19 - July 19",
             aboutProject:
                 """Grenade is a Launcher application for android. It has two branches one is built with JAVA and other with Kotlin.""",
             // image: "https://appturtles.com/unburden/assets/img/illus/icon.png",
             sourceUrl: "https://github.com/tg21/GrenadeLauncher",
           ),
         ]),
+        const SkillsFormat(
+        skillName: "Angular & C#",
+        expirenceTimeWithSkill: "2+ years",
+        details:
+            """I have been working with Angular JS professionally for two years.
+At TechMahindra I developed several internal/in-house web application with Angular JS and C# asp.net for the client which focused on tracking progress of client's production team, storing important day-to-day data in servers which helped eliminate need of maintaining excel sheets at client't end.
+Automatic report generations from data and data visualisation for management that provided more insights into opertions and make better business decisions.
+Also used C# .net for desktop application developement.
+""",
+        certifications: [],
+        projects: []),
   ];
 }
 
