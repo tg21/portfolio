@@ -29,7 +29,7 @@ class AboutData {
   static const about_summary =
       """I am a Software Engineer. I have a degree in Computer Science and I am pursuing Master's degree in Computer Applications. I love programming and learning new technologies.
 I enjoy almost every thing programming related but python, JavaScript, dart and c# are my favourite languages.
-I have worked on few of my personal projects as well because I think that the best way to learn a new technology is to build something cool with it.""";
+I have worked on few of my personal projects as well because I think that the best way to learn a new technology is to build something cool with it""";
   static const List<ExperianceData> experience = [
     const ExperianceData(
       organisation: "Tech Mahindra",
@@ -81,8 +81,8 @@ class SkillsData {
         skillName: "Python",
         expirenceTimeWithSkill: "4+ years",
         details:
-            """"Python is one of my favourite langauges. It is my go to lanaguage to solve any problem with scriptable solution. Apart form using it to script almost every small problem with it, I have worked on few of my personal python projects that are a bit larger in scale,
-Professionaly I have used python for automating tasks of operations teams at TechMahindra""",
+            """"Python is one of my favourite langauges. It is my go to lanaguage to solve any problem with scriptable solution. Apart form using it to script almost every small problem, I have worked on few of my personal python projects that are a bit larger in scale,
+Professionaly I have used python for automating tasks of operations teams at TechMahindra.""",
         certifications: [
           // const CertificationData(
           //   certification: "SoloLearn Python Certification",
@@ -104,8 +104,8 @@ Professionaly I have used python for automating tasks of operations teams at Tec
             project: "Python On Pails",
             duration: "2018 - Current",
             aboutProject:
-                "Python On Pails is an OpenSource lightweight web development framework that is designed to speed up development process",
-            //image: "assets/images/others/pyop.webp",
+                """Python On Pails is an OpenSource lightweight web development framework that is designed to speed up development process.""",
+            image: "assets/images/others/pyop.webp",
             sourceUrl: "https://github.com/tg21/python-on-pails",
           ),
           const ProjectsData(
@@ -113,7 +113,7 @@ Professionaly I have used python for automating tasks of operations teams at Tec
             duration: "2018 - Current",
             aboutProject:
                 "WiBuster is an opesource website enumerator made with python3. It can enumerate even those websites that respond with code 200 even when resource is not present",
-            //image: "assets/images/others/wibuster.webp",
+            image: "assets/images/others/wibuster.webp",
             sourceUrl: "https://github.com/tg21/wibuster",
           ),
         ]),
@@ -125,18 +125,12 @@ Professionaly I have used python for automating tasks of operations teams at Tec
 I have worked with two major flutter projects.""",
         certifications: [
           const CertificationData(
-            certification: "App Brewery Introduction to flutter Certification",
+            certification: "Introduction to flutter Certification",
             validaity: "lifetime",
-            url: "https://google.com",
+            url: "https://tg21.github.io/certs/fluuter_certificate.pdf",
             image:
                 "https://www.londonappbrewery.com/wp-content/uploads/2015/06/London-App-Brewery-Logo-Large.png",
-            infoCertificate: "Completed Flutter Course with App Brewery",
-          ),
-          const CertificationData(
-            certification: "SoloLearn Dart Certification",
-            validaity: "lifetime",
-            url: "https://google.com",
-            infoCertificate: "Completed Dart Course with Solo Learn",
+            infoCertificate: "Completed Introduction to Flutter Course with App Brewery",
           ),
         ],
         projects: [
@@ -144,9 +138,9 @@ I have worked with two major flutter projects.""",
             project: "The Last Dino Run",
             duration: "Dec 20 - April 21",
             aboutProject:
-                """An android game based on Chrome's famous offline game made with flutter from scratch without using any game engines like flame or unity.
+                """An android game based on Chrome's famous offline game. Made with flutter from scratch without using any game engines like flame or unity.
 It is available on google play store.""",
-            image: "images/man.png",
+            image: "https://appturtles.com/images/last_dino_square.webp",
             url:
                 "https://play.google.com/store/apps/details?id=com.appturtles.the_last_dino",
           ),
@@ -154,7 +148,7 @@ It is available on google play store.""",
             project: "This Website",
             duration: "April 21 - May 21",
             aboutProject:
-                "This website is made with flutter form scratch. It uses flutter-web with html as web-renderer.",
+                "This website is made with flutter form scratch. It uses flutter-web with html as web-renderer. Due to framework being very young and flutter-web even younger, there were many limitaions to overcome on this project. This website works best on a desktop browser but it is made response to a great extent and works good on mobile screens as well.",
             //image: "images/man.png",
             //url: "#",
             sourceUrl: "https://github.com/tg21/protfolio",
@@ -164,7 +158,7 @@ It is available on google play store.""",
         skillName: "React",
         expirenceTimeWithSkill: "1+ years",
         details:
-            """I have been working with react/react-native on my personal projects for more than a year. The first react-native project I picked was ann android chat application, I learned most of react while working on it.
+            """I have been working with react/react-native on my personal projects for more than a year. The first react-native project I picked was ann android chat application, I learned most of react by working on it.
 I have also been working on another react-typeScript web application project, it is in very early stage of devlopent that is why it is not mentioned below""",
         certifications: [],
         projects: [
@@ -208,7 +202,7 @@ For android projects I now prefer Kotlin, which is much more developer friiendly
         skillName: "Angular & C#",
         expirenceTimeWithSkill: "2+ years",
         details:
-            """I have been working with Angular JS professionally for two years.
+            """I have been working with Angular JS and C# professionally for two years.
 At TechMahindra I developed several internal/in-house web application with Angular JS and C# asp.net for the client which focused on tracking progress of client's production team, storing important day-to-day data in servers which helped eliminate need of maintaining excel sheets at client't end.
 Automatic report generations from data and data visualisation for management that provided more insights into opertions and make better business decisions.
 Also used C# .net for desktop application developement.
@@ -267,7 +261,7 @@ class ContactData {
       url: "https://github.com/tg21",
       iconColor: Colors.white,
       textColor: Colors.white,
-      bgColor: Colors.black,
+      bgColor: Colors.deepPurple,
     ),
   ];
 }
