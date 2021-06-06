@@ -202,7 +202,7 @@ class EducationTIle extends StatelessWidget {
 }
 
 class ExperienceTile extends StatelessWidget {
-  final ExperianceData exp;
+  final ExperienceData exp;
   const ExperienceTile({
     Key? key,
     required this.size,

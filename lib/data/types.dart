@@ -1,13 +1,13 @@
  import 'package:flutter/material.dart';
 
- class ExperianceData{
+ class ExperienceData{
   final String organisation;
   final String jobTitle;
   final String info;
   final String timeSpan;
   final Color color; //date span as string ,e.g- July 2019 - Aug 2021
 
-  const ExperianceData({required this.organisation, required this.jobTitle, required this.timeSpan, this.info="",this.color = Colors.white70});
+  const ExperienceData({required this.organisation, required this.jobTitle, required this.timeSpan, this.info="",this.color = Colors.white70});
 }
 
  class EducationData{
@@ -22,14 +22,14 @@
 
 class SkillsFormat {
   final String skillName;
-  final String expirenceTimeWithSkill;
+  final String experienceTimeWithSkill;
   final String details;
   final List<CertificationData> certifications;
   final List<ProjectsData> projects;
 
   const SkillsFormat(
       {required this.skillName,
-      required this.expirenceTimeWithSkill,
+      required this.experienceTimeWithSkill,
       required this.details,
       required this.certifications,
       required this.projects});
@@ -38,14 +38,14 @@ class SkillsFormat {
 class CertificationData {
   final String certification;
   final String? image;
-  final String validaity;
+  final String validity;
   final String? url;
   final String? infoCertificate;
 
   const CertificationData(
       {required this.certification,
       this.image = 'https://image.flaticon.com/icons/png/128/3688/3688571.png',
-      required this.validaity,
+      required this.validity,
       this.url,
       this.infoCertificate});
 }

@@ -178,7 +178,7 @@ class SkillDetailView extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
-                                                Text(cert.validaity),
+                                                Text(cert.validity),
                                               ],
                                             ),
                                           ),
