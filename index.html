@@ -38,13 +38,13 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('flutter-first-frame', function() {
-                navigator.serviceWorker.register('flutter_service_worker.js?v=3361001161');
+                navigator.serviceWorker.register('flutter_service_worker.js?v=548957142');
             });
         }
     </script>
     <script type="text/javascript">
         let useHtml = true;
-        if (window.location.url.endswith('canvaskit')) {
+        if (window.location.href.endswith('canvaskit')) {
             useHtml = false;
         }
         if (useHtml) {
