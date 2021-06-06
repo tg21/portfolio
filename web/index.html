@@ -44,6 +44,9 @@
     </script>
     <script type="text/javascript">
         let useHtml = true;
+        if (window.location.url.endswith('canvaskit')) {
+            useHtml = false;
+        }
         if (useHtml) {
             window.flutterWebRenderer = "html";
         } else {
