@@ -31,7 +31,7 @@ jobs:
     - name: Deploy
       uses: s0/git-publish-subdir-action@develop
       env:
-        REPO: tg21.github.io
+        REPO: git@github.com:tg21/tg21.github.io.git
         BRANCH: master
         FOLDER: build/web/
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
